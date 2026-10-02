@@ -122,17 +122,19 @@
     bottom: auto !important;
     height: auto !important;
     max-height: calc(100vh - 90px) !important;
-    width: min(320px, calc(100vw - 24px)) !important;
-    background: rgba(255, 255, 255, 0.97) !important;
+    width: clamp(200px, 55vw, 290px) !important;
+    max-width: 58vw !important;
+    min-width: 195px !important;
+    background: rgba(255, 255, 255, 0.98) !important;
     backdrop-filter: blur(20px) saturate(190%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
     box-shadow: 0 18px 40px -6px rgba(10, 31, 68, 0.22),
                 0 0 0 1px rgba(255, 255, 255, 0.8) inset,
                 0 4px 14px rgba(0, 0, 0, 0.08) !important;
     border: 1px solid rgba(226, 232, 240, 0.9) !important;
-    border-radius: 18px !important;
+    border-radius: 16px !important;
     z-index: 100000 !important;
-    padding: 0.85rem 0.85rem 1.1rem !important;
+    padding: 0.65rem 0.65rem 0.85rem !important;
     overflow-y: auto !important;
     display: none !important;
     flex-direction: column !important;
@@ -272,11 +274,84 @@
     width: 100% !important;
   }
 
-  /* Touch-friendly buttons (min 44px height) */
+  /* Touch-friendly balanced buttons on mobile: never overflow or blow up */
   .btn {
-    min-height: 44px;
-    padding: 0.65rem 1.15rem;
-    font-size: 0.95rem;
+    min-height: 40px;
+    padding: 0.55rem 1rem !important;
+    font-size: 0.88rem !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+
+  .mobile-menu .btn {
+    padding: 0.65rem 1rem !important;
+    font-size: 0.88rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Process Cards styling on mobile */
+  .process-step-card {
+    background: rgba(255, 255, 255, 0.06) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 16px !important;
+    padding: 1.25rem !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .process-step-card:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(56, 189, 248, 0.4) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* Prevent iOS zoom on input focus */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+
+  /* Prevent sticky hover jumps on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    .card:hover, .service-card:hover {
+      transform: none !important;
+      box-shadow: 0 5px 18px rgba(10, 31, 68, 0.06) !important;
+    }
+  }
+
+  /* Service cards grid on mobile */
+  @media (max-width: 639.98px) {
+    .service-card {
+      padding: 0.85rem 0.65rem !important;
+    }
+    .service-card .text-2xl {
+      font-size: 1.5rem !important;
+    }
+    .service-card .font-bold {
+      font-size: 0.82rem !important;
+      line-height: 1.25 !important;
+    }
+  }
+
+  /* Dark real estate section on mobile */
+  .dark-section .p-10 {
+    padding: 2.25rem 1.25rem !important;
+  }
+
+  /* Testimonials Section on mobile */
+  #testimonialsSection .container-x {
+    grid-template-columns: 1fr !important;
+    gap: 1.75rem !important;
+  }
+
+  /* Responsive Tables */
+  table {
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 
   /* Footer on mobile */

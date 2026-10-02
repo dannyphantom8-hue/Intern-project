@@ -123,17 +123,45 @@
     }
   });
 
-  // Auto-close on resize if screen becomes tablet/desktop width
+  // Auto-close on resize if screen expands to desktop width (>= 1024px)
   window.addEventListener("resize", function () {
-    if (window.innerWidth >= 768) {
+    if (window.innerWidth >= 1024) {
       closeMenu();
     }
   });
 
+  // Header scroll enhancement: Change background color & reduce height past hero section
+  function setupHeaderScrollEffect() {
+    const header = document.querySelector("header");
+    if (!header) return;
+
+    function handleHeaderScroll() {
+      const hero = document.querySelector(".hero, .hero-section");
+      // Calculate hero bottom or fallback to 100px
+      const threshold = hero
+        ? Math.max(80, hero.offsetTop + hero.offsetHeight - 90)
+        : 80;
+
+      if (window.scrollY > threshold) {
+        header.classList.add("header-scrolled");
+      } else {
+        header.classList.remove("header-scrolled");
+      }
+    }
+
+    window.addEventListener("scroll", handleHeaderScroll, { passive: true });
+    // Initial check on page load
+    handleHeaderScroll();
+  }
+
   // Initialize as soon as DOM is interactive
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", setupMobileMenu);
+    document.addEventListener("DOMContentLoaded", function () {
+      setupMobileMenu();
+      setupHeaderScrollEffect();
+    });
   } else {
     setupMobileMenu();
+    setupHeaderScrollEffect();
   }
 })();

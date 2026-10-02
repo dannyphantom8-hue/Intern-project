@@ -27,20 +27,51 @@
     font-size: 1.35rem !important;
   }
 
-  /* Hide mobile hamburger toggle on standard tablets */
-  .mobile-toggle {
+  /* Tablet Logo & Brand Fit */
+  header .logo-container,
+  header a.flex.items-center {
+    flex-shrink: 0 !important;
+  }
+
+  /* Header Layout on Tablet (768px - 1023.98px): Same menu as phone */
+  .desktop-nav {
     display: none !important;
   }
 
-  /* Compact Desktop Nav on Tablets */
-  .desktop-nav {
+  .mobile-toggle {
     display: flex !important;
-    gap: 0.5rem !important;
-    font-size: 0.85rem !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    background: #f1f5f9;
+    color: #0f172a;
+    cursor: pointer;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
   }
 
-  .desktop-nav a {
-    padding: 0.4rem 0.5rem !important;
+  .mobile-toggle:hover,
+  .mobile-toggle:active {
+    background: #e2e8f0;
+    color: #126fe8;
+  }
+
+  header .btn-primary {
+    display: inline-flex !important;
+    font-size: 0.8rem !important;
+    padding: 0.5rem 0.85rem !important;
+    min-height: 38px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Universal button fit on Tablet: never spill out of cards or screens */
+  .btn {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   /* Hero Section: 2-column or balanced layout */
