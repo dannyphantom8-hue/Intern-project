@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Aken Tech Solution</title>
+    <meta
+      name="description"
+      content="Aken Tech Solution — technology, digital marketing, automation and growth solutions."
+    />
+    <meta property="og:title" content="Aken Tech Solution" />
+    <meta
+      property="og:description"
+      content="Aken Tech Solution — technology, digital marketing, automation and growth solutions."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/responsiveness/responsive.css" />
+    <script src="/responsiveness/menu.js" defer></script>
+    <style>
+      :root {
+        --navy: #0a1f44;
+        --blue: #126fe8;
+        --light: #eaf3ff;
+        --text: #172033;
+        --muted: #64748b;
+        --border: #dce5f0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        color: var(--text);
+      }
+      .container-x {
+        max-width: 1200px;
+        margin: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .card {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 5px 18px rgba(10, 31, 68, 0.06);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+      }
+      .service-card {
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        will-change: transform, box-shadow;
+      }
+      .card:hover, .service-card:hover {
+        transform: translateY(-4px) scale(1.025);
+        box-shadow: 0 16px 32px -4px rgba(10, 31, 68, 0.12), 0 8px 16px -4px rgba(10, 31, 68, 0.06);
+        border-color: #b9d0ec;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal.active.card:hover {
+        transform: translateY(-4px) scale(1.025);
+        box-shadow: 0 16px 32px -4px rgba(10, 31, 68, 0.12), 0 8px 16px -4px rgba(10, 31, 68, 0.06);
+        border-color: #b9d0ec;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      }
+      .scroll-progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #126fe8 0%, #38bdf8 50%, #00e5ff 100%);
+        box-shadow: 0 0 10px rgba(18, 111, 232, 0.7);
+        z-index: 99999;
+        pointer-events: none;
+        transition: width 0.08s ease-out;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        font-weight: 700;
+        transition: 0.2s;
+      }
+      .btn-primary {
+        background: #126fe8;
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: #0b5ecb;
+        transform: translateY(-1px);
+      }
+      .btn-light {
+        background: #fff;
+        color: #0a1f44;
+      }
+      .btn-outline {
+        border: 1px solid #b9d0ec;
+        color: #126fe8;
+        background: #fff;
+      }
+      .section {
+        padding: 72px 0;
+      }
+      .eyebrow {
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        font-weight: 800;
+        color: #126fe8;
+        text-transform: uppercase;
+      }
+      .section-title {
+        font-size: clamp(1.7rem, 3vw, 2.5rem);
+        line-height: 1.08;
+        font-weight: 800;
+        color: #0a1f44;
+      }
+      .nav-link {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #24324b;
+        padding: 0.65rem 0.45rem;
+        border-bottom: 2px solid transparent;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: #126fe8;
+        border-color: #126fe8;
+      }
+      .topbar {
+        background: #0a1f44;
+        color: #fff;
+        font-size: 12px;
+      }
+      .logo-mark {
+        font-weight: 900;
+        font-style: italic;
+        letter-spacing: -0.08em;
+        font-size: 30px;
+        color: #126fe8;
+        line-height: 0.8;
+      }
+      .logo-name {
+        font-weight: 800;
+        line-height: 1.05;
+        color: #0a1f44;
+      }
+      .hero {
+        position: relative;
+        overflow: hidden;
+        background: #071b37;
+        min-height: 390px;
+      }
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.52;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          #061a35 5%,
+          rgba(6, 26, 53, 0.86) 40%,
+          rgba(6, 26, 53, 0.15) 100%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+      .stat-strip {
+        background: #fff;
+        border-bottom: 1px solid #e5edf6;
+        border-top: 1px solid #e5edf6;
+      }
+      .stat {
+        padding: 22px 12px;
+        text-align: center;
+      }
+      .stat + .stat {
+        border-left: 1px solid #dce5f0;
+      }
+      .icon-circle {
+        width: 48px;
+        height: 48px;
+        border-radius: 999px;
+        background: #eaf3ff;
+        color: #126fe8;
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+        font-weight: 800;
+      }
+      .feature-img {
+        height: 190px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .dark-section {
+        background: #061b38;
+        color: #fff;
+      }
+      .dark-section .section-title {
+        color: #fff;
+      }
+      .tabs {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        scrollbar-width: none;
+      }
+      .tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .tab {
+        white-space: nowrap;
+        border: 1px solid #cddceb;
+        border-radius: 999px;
+        padding: 0.55rem 0.9rem;
+        font-size: 0.82rem;
+        font-weight: 700;
+        background: #fff;
+        color: #263852;
+      }
+      .tab.active {
+        background: #126fe8;
+        color: #fff;
+        border-color: #126fe8;
+      }
+      .footer-bottom {
+        background: #04162d;
+        color: #fff;
+      }
+      .mobile-menu {
+        display: none;
+      }
+      .mobile-menu.open {
+        display: block;
+      }
+      .faq-answer {
+        display: none;
+      }
+      .faq.open .faq-answer {
+        display: block;
+      }
+      @media (max-width: 767px) {
+        .section {
+          padding: 48px 0;
+        }
+        .container-x {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+        .desktop-nav {
+          display: none;
+        }
+        .mobile-toggle {
+          display: block;
+        }
+        .hero {
+          min-height: 500px;
+        }
+        .hero-media {
+          opacity: 0.38;
+        }
+        .hero-overlay {
+          background: linear-gradient(
+            90deg,
+            #061a35 0%,
+            rgba(6, 26, 53, 0.88) 55%,
+            rgba(6, 26, 53, 0.45)
+          );
+        }
+        .stat-strip .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .stat + .stat {
+          border-left: 0;
+          border-top: 1px solid #dce5f0;
+        }
+        .stat {
+          padding: 16px 8px;
+        }
+      }
+      @media (min-width: 768px) {
+        .mobile-toggle {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="scrollProgressBar" class="scroll-progress-bar" style="width: 0%;"></div>
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+      <div class="topbar">
+        <div class="container-x h-8 flex items-center justify-between">
+          <span>Your Growth Partner in Technology & Marketing</span>
+          <div class="hidden sm:flex gap-4">
+            <span>☎ +91 98765 43210</span><span>✉ hello@akentech.in</span
+            ><span>in</span><span>◎</span><span>▶</span>
+          </div>
+        </div>
+      </div>
+      <div class="container-x h-16 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2"
+          ><span class="logo-mark">AT</span
+          ><span class="logo-name text-sm">Aken Tech<br />Solution</span></a
+        >
+        <nav class="desktop-nav flex items-center gap-2">
+          <a class="nav-link active" href="index.html">Home</a
+          ><a class="nav-link" href="about.html">About</a
+          ><a class="nav-link" href="services.html">Services</a
+          ><a class="nav-link" href="products.html">Products</a
+          ><a class="nav-link" href="industries.html">Industries</a
+          ><a class="nav-link" href="portfolio.html">Portfolio</a
+          ><a class="nav-link" href="blog.html">Blog</a
+          ><a class="nav-link" href="contact.html">Contact</a>
+        </nav>
+        <a
+          href="contact.html"
+          class="btn btn-primary text-xs hidden md:inline-flex"
+          >Talk to an Expert →</a
+        ><button
+          class="mobile-toggle text-2xl"
+          onclick="toggleMenu(event)"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+      </div>
+      <div
+        id="mobileMenu"
+        class="mobile-menu md:hidden border-t bg-white px-5 pb-4"
+      >
+        <a
+          class="block py-3 border-b border-slate-100 font-semibold text-blue-600"
+          href="index.html"
+          >Home</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="about.html"
+          >About</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="services.html"
+          >Services</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="products.html"
+          >Products</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="industries.html"
+          >Industries</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="portfolio.html"
+          >Portfolio</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="blog.html"
+          >Blog</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="contact.html"
+          >Contact</a
+        ><a
+          href="contact.html"
+          class="btn btn-primary mt-4 w-full justify-center"
+          >Talk to an Expert →</a
+        >
+      </div>
+    </header>
+    <section class="hero">
+      <div
+        class="hero-media"
+        style="
+          background-image: url(&quot;https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1600&q=80&quot;);
+        "
+      ></div>
+      <div class="hero-overlay"></div>
+      <div
+        class="container-x hero-content min-h-[390px] flex items-center py-16"
+      >
+        <div class="max-w-2xl text-white">
+          <div class="text-sm text-sky-300 mb-4">Home › Home</div>
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-[1.02]">
+            We Build Digital Solutions That
+            <span class="text-sky-400">Create Real Impact</span>
+          </h1>
+          <p class="text-lg text-slate-200 mt-5 max-w-xl">
+            Aken Tech Solution helps businesses & organizations grow with
+            performance marketing, web development, automation and AI.
+          </p>
+          <div class="flex flex-wrap gap-3 mt-7">
+            <a class="btn btn-primary" href="contact.html"
+              >Get Free Consultation →</a
+            ><a class="btn btn-light" href="services.html"
+              >Explore Our Services →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-7 bg-slate-50 border-b">
+      <div class="container-x grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7 gap-3">
+        <div class="card p-4 text-center service-card flex flex-col justify-between items-center group">
+          <div>
+            <div class="text-2xl mb-1 group-hover:scale-110 transition-transform duration-200">📊</div>
+            <div class="font-bold text-sm">Performance Marketing</div>
+          </div>
+          <a href="services.html" class="text-blue-600 text-xs mt-3 inline-block font-semibold">Learn More →</a>
+        </div>
+        <div class="card p-4 text-center service-card flex flex-col justify-between items-center group">
+          <div>
+            <div class="text-2xl mb-1 group-hover:scale-110 transition-transform duration-200">🏠</div>
+            <div class="font-bold text-sm">Real Estate Solutions</div>
+          </div>
+          <a href="services.html" class="text-blue-600 text-xs mt-3 inline-block font-semibold">Learn More →</a>
+        </div>
+        <div class="card p-4 text-center service-card flex flex-col justify-between items-center group">
+          <div>
+            <div class="text-2xl mb-1 group-hover:scale-110 transition-transform duration-200">🌐</div>
+            <div class="font-bold text-sm">Web Development</div>
+          </div>
+          <a href="services.html" class="text-blue-600 text-xs mt-3 inline-block font-semibold">Learn More →</a>
+        </div>
+        <div class="card p-4 text-center service-card flex flex-col justify-between items-center group">
+          <div>
+            <div class="text-2xl mb-1 group-hover:scale-110 transition-transform duration-200">⚙️</div>
+            <div class="font-bold text-sm">Custom Software & CRM</div>
+          </div>
+          <a href="services.html" class="text-blue-600 text-xs mt-3 inline-block font-semibold">Learn More →</a>
+        </div>
+        <div class="card p-4 text-center service-card flex flex-col justify-between items-center group">
+          <div>
+            <div class="text-2xl mb-1 group-hover:scale-110 transition-transform duration-200">🟢</div>
+            <div class="font-bold text-sm">WhatsApp Automation</div>
+          </div>
+          <a href="services.html" class="text-blue-600 text-xs mt-3 inline-block font-semibold">Learn More →</a>
+        </div>
+        <div class="card p-4 text-center service-card flex flex-col justify-between items-center group">
+          <div>
+            <div class="text-2xl mb-1 group-hover:scale-110 transition-transform duration-200">🤖</div>
+            <div class="font-bold text-sm">AI Calling & AI Agents</div>
+          </div>
+          <a href="services.html" class="text-blue-600 text-xs mt-3 inline-block font-semibold">Learn More →</a>
+        </div>
+        <div class="card p-4 text-center service-card flex flex-col justify-between items-center group col-span-2 sm:col-span-1">
+          <div>
+            <div class="text-2xl mb-1 group-hover:scale-110 transition-transform duration-200">❤️</div>
+            <div class="font-bold text-sm">NGO Digital Solutions</div>
+          </div>
+          <a href="services.html" class="text-blue-600 text-xs mt-3 inline-block font-semibold">Learn More →</a>
+        </div>
+      </div>
+    </section>
+    <section class="dark-section">
+      <div class="container-x grid md:grid-cols-2">
+        <div
+          class="min-h-[330px] bg-cover bg-center"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=80&quot;);
+          "
+        ></div>
+        <div class="p-10 md:p-14 flex items-center">
+          <div>
+            <div class="eyebrow text-sky-300">REAL ESTATE LEAD GENERATION</div>
+            <h2 class="text-3xl md:text-4xl font-extrabold mt-2">
+              More Quality Leads.<br /><span class="text-sky-400"
+                >More Property Sales.</span
+              >
+            </h2>
+            <p class="text-slate-300 mt-4">
+              Data-driven campaigns, targeted audiences and high-converting
+              strategies for real estate businesses.
+            </p>
+            <div class="grid grid-cols-3 gap-3 mt-6 text-center">
+              <div>
+                <b class="text-xl">5,000+</b
+                ><small class="block text-slate-400">Leads Generated</small>
+              </div>
+              <div>
+                <b class="text-xl">100+</b
+                ><small class="block text-slate-400">Real Estate Clients</small>
+              </div>
+              <div>
+                <b class="text-xl">3.8x</b
+                ><small class="block text-slate-400">Average ROAS</small>
+              </div>
+            </div>
+            <a class="btn btn-primary mt-7" href="contact.html"
+              >Get Real Estate Leads →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section bg-slate-50">
+      <div class="container-x">
+        <div class="text-center">
+          <div class="eyebrow">WHY CHOOSE AKEN TECH SOLUTION</div>
+          <h2 class="section-title mt-2">
+            A Partner for Your Long-Term Growth
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-4 gap-5 mt-10">
+          <article class="card p-6 text-center">
+            <div class="icon-circle mx-auto mb-4">✓</div>
+            <h3 class="font-extrabold">Results Focused</h3>
+            <p class="text-sm text-slate-600 mt-2">
+              We focus on measurable growth and real business impact.
+            </p>
+          </article>
+          <article class="card p-6 text-center">
+            <div class="icon-circle mx-auto mb-4">✓</div>
+            <h3 class="font-extrabold">End-to-End Solutions</h3>
+            <p class="text-sm text-slate-600 mt-2">
+              From strategy to execution, we handle everything.
+            </p>
+          </article>
+          <article class="card p-6 text-center">
+            <div class="icon-circle mx-auto mb-4">✓</div>
+            <h3 class="font-extrabold">Industry Expertise</h3>
+            <p class="text-sm text-slate-600 mt-2">
+              Solutions tailored for your industry and business goals.
+            </p>
+          </article>
+          <article class="card p-6 text-center">
+            <div class="icon-circle mx-auto mb-4">✓</div>
+            <h3 class="font-extrabold">Long-Term Partnership</h3>
+            <p class="text-sm text-slate-600 mt-2">
+              We grow with you, not just for a project.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="dark-section section">
+      <div class="container-x">
+        <div class="eyebrow text-sky-300">OUR PROCESS</div>
+        <h2 class="section-title mt-2">Simple. Transparent. Effective.</h2>
+        <div class="grid md:grid-cols-4 gap-6 mt-10">
+          <div>
+            <div
+              class="w-11 h-11 rounded-full bg-blue-600 grid place-items-center font-bold"
+            >
+              1
+            </div>
+            <h3 class="font-extrabold text-lg mt-4">Understand Your Goals</h3>
+            <p class="text-sm text-slate-300 mt-2">
+              We analyze your business and requirements.
+            </p>
+          </div>
+          <div>
+            <div
+              class="w-11 h-11 rounded-full bg-blue-600 grid place-items-center font-bold"
+            >
+              2
+            </div>
+            <h3 class="font-extrabold text-lg mt-4">Plan & Strategize</h3>
+            <p class="text-sm text-slate-300 mt-2">
+              We create a customized growth plan.
+            </p>
+          </div>
+          <div>
+            <div
+              class="w-11 h-11 rounded-full bg-blue-600 grid place-items-center font-bold"
+            >
+              3
+            </div>
+            <h3 class="font-extrabold text-lg mt-4">Execute & Optimize</h3>
+            <p class="text-sm text-slate-300 mt-2">
+              We implement, monitor and optimize.
+            </p>
+          </div>
+          <div>
+            <div
+              class="w-11 h-11 rounded-full bg-blue-600 grid place-items-center font-bold"
+            >
+              4
+            </div>
+            <h3 class="font-extrabold text-lg mt-4">Scale & Grow</h3>
+            <p class="text-sm text-slate-300 mt-2">
+              We help you achieve sustainable growth.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container-x">
+        <div class="flex items-end justify-between gap-4">
+          <div>
+            <div class="eyebrow">FEATURED WORK</div>
+            <h2 class="section-title mt-2">Our Latest Projects</h2>
+          </div>
+          <a class="btn btn-outline" href="portfolio.html"
+            >View All Projects →</a
+          >
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
+          <article class="card overflow-hidden">
+            <img
+              class="feature-img !rounded-none"
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80"
+              alt="Real Estate Lead Generation"
+            />
+            <div class="p-5">
+              <div class="text-xs text-blue-600 font-bold">
+                Meta Ads · Lead System · CRM
+              </div>
+              <h3 class="font-extrabold mt-1">Real Estate Lead Generation</h3>
+              <a
+                href="portfolio.html"
+                class="text-blue-600 text-sm font-bold mt-4 inline-block"
+                >View Case Study →</a
+              >
+            </div>
+          </article>
+          <article class="card overflow-hidden">
+            <img
+              class="feature-img !rounded-none"
+              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80"
+              alt="E-commerce Website"
+            />
+            <div class="p-5">
+              <div class="text-xs text-blue-600 font-bold">
+                Online Store · Payments · Growth
+              </div>
+              <h3 class="font-extrabold mt-1">E-commerce Website</h3>
+              <a
+                href="portfolio.html"
+                class="text-blue-600 text-sm font-bold mt-4 inline-block"
+                >View Case Study →</a
+              >
+            </div>
+          </article>
+          <article class="card overflow-hidden">
+            <img
+              class="feature-img !rounded-none"
+              src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80"
+              alt="Custom CRM Development"
+            />
+            <div class="p-5">
+              <div class="text-xs text-blue-600 font-bold">
+                Leads · Sales · Automation
+              </div>
+              <h3 class="font-extrabold mt-1">Custom CRM Development</h3>
+              <a
+                href="portfolio.html"
+                class="text-blue-600 text-sm font-bold mt-4 inline-block"
+                >View Case Study →</a
+              >
+            </div>
+          </article>
+          <article class="card overflow-hidden">
+            <img
+              class="feature-img !rounded-none"
+              src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=80"
+              alt="NGO Management System"
+            />
+            <div class="p-5">
+              <div class="text-xs text-blue-600 font-bold">
+                Website · Software · 200+ Features
+              </div>
+              <h3 class="font-extrabold mt-1">NGO Management System</h3>
+              <a
+                href="portfolio.html"
+                class="text-blue-600 text-sm font-bold mt-4 inline-block"
+                >View Case Study →</a
+              >
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section bg-slate-50">
+      <div class="container-x grid lg:grid-cols-3 gap-7 items-center">
+        <div class="lg:col-span-2">
+          <div class="eyebrow">WHAT OUR CLIENTS SAY</div>
+          <h2 class="section-title mt-2">
+            Trusted by Businesses & Organizations
+          </h2>
+          <div class="card p-7 mt-6">
+            <div class="text-4xl text-blue-200">“</div>
+            <p class="text-slate-700 text-lg">
+              Aken Tech Solution helped us generate high-quality real estate
+              leads through Meta Ads. Their team is professional, responsive and
+              truly understands our business.
+            </p>
+            <div class="mt-5 font-extrabold">Rohit Mehta</div>
+            <div class="text-sm text-slate-500">
+              Director, Real Estate Company · ★★★★★
+            </div>
+          </div>
+        </div>
+        <div class="card bg-blue-50 p-8">
+          <div class="text-5xl text-blue-200">“</div>
+          <h3 class="text-2xl font-extrabold mt-5">
+            Let's Build Something Great Together
+          </h3>
+          <a href="contact.html" class="btn btn-primary mt-6"
+            >Talk to an Expert →</a
+          >
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container-x">
+        <div class="flex items-end justify-between">
+          <div>
+            <div class="eyebrow">INSIGHTS & UPDATES</div>
+            <h2 class="section-title mt-2">Latest from Our Blog</h2>
+          </div>
+          <a class="btn btn-outline" href="blog.html">View All Posts →</a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-5 mt-8">
+          <article class="card p-4">
+            <img
+              src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=700&q=80"
+              class="h-40 w-full object-cover rounded-lg"
+              alt=""
+            />
+            <div class="text-xs text-slate-500 mt-3">August 25, 2025</div>
+            <h3 class="font-extrabold mt-1">
+              How Real Estate Businesses Can Generate More Leads in 2025
+            </h3>
+            <a
+              class="text-blue-600 text-sm font-bold mt-3 inline-block"
+              href="blog.html"
+              >Read More →</a
+            >
+          </article>
+          <article class="card p-4">
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80"
+              class="h-40 w-full object-cover rounded-lg"
+              alt=""
+            />
+            <div class="text-xs text-slate-500 mt-3">August 20, 2025</div>
+            <h3 class="font-extrabold mt-1">
+              Why Every Business Needs a Professional Website
+            </h3>
+            <a
+              class="text-blue-600 text-sm font-bold mt-3 inline-block"
+              href="blog.html"
+              >Read More →</a
+            >
+          </article>
+          <article class="card p-4">
+            <img
+              src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=700&q=80"
+              class="h-40 w-full object-cover rounded-lg"
+              alt=""
+            />
+            <div class="text-xs text-slate-500 mt-3">August 15, 2025</div>
+            <h3 class="font-extrabold mt-1">
+              The Future of Business with AI Automation
+            </h3>
+            <a
+              class="text-blue-600 text-sm font-bold mt-3 inline-block"
+              href="blog.html"
+              >Read More →</a
+            >
+          </article>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <section class="dark-section py-10">
+        <div
+          class="container-x flex flex-col lg:flex-row items-start lg:items-center justify-between gap-7"
+        >
+          <div>
+            <div class="eyebrow text-sky-300">READY TO GROW?</div>
+            <h2 class="text-2xl md:text-3xl font-extrabold mt-1">
+              Turn Your Goals Into Real Results
+            </h2>
+            <p class="text-slate-300 mt-2">
+              Get a free consultation and discover how Aken Tech Solution can
+              help you grow faster.
+            </p>
+          </div>
+          <a href="contact.html" class="btn btn-light">Get Free Consultation</a>
+        </div>
+      </section>
+      <div class="bg-white">
+        <div class="container-x py-12 grid md:grid-cols-4 gap-10">
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <span class="logo-mark">AT</span
+              ><span class="logo-name text-sm">Aken Tech Solution</span>
+            </div>
+            <p class="text-sm text-slate-600">
+              Aken Tech Solution helps businesses & organizations grow with
+              technology, automation and performance marketing.
+            </p>
+            <div class="flex gap-3 mt-5 text-lg">
+              <span>in</span><span>◎</span><span>▶</span><span>f</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-extrabold mb-3">Quick Links</h3>
+            <div class="space-y-2 text-sm text-slate-600">
+              <a class="block" href="index.html">Home</a
+              ><a class="block" href="about.html">About Us</a
+              ><a class="block" href="services.html">Services</a
+              ><a class="block" href="products.html">Products</a
+              ><a class="block" href="industries.html">Industries</a
+              ><a class="block" href="portfolio.html">Portfolio</a
+              ><a class="block" href="blog.html">Blog</a
+              ><a class="block" href="contact.html">Contact</a>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-extrabold mb-3">Our Services</h3>
+            <div class="space-y-2 text-sm text-slate-600">
+              <div>Performance Marketing</div>
+              <div>Real Estate Solutions</div>
+              <div>Web Development</div>
+              <div>Custom Software & CRM</div>
+              <div>WhatsApp Automation</div>
+              <div>AI Calling & AI Agents</div>
+              <div>NGO Digital Solutions</div>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-extrabold mb-3">Contact Us</h3>
+            <div class="space-y-3 text-sm text-slate-600">
+              <div>☎ +91 98765 43210</div>
+              <div>✉ hello@akentech.in</div>
+              <div>⌖ Thane, Mumbai, India</div>
+              <div>◉ Serving Clients Worldwide</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div
+          class="container-x py-4 flex flex-col sm:flex-row justify-between gap-2 text-xs"
+        >
+          <span>© 2025 Aken Tech Solution. All rights reserved.</span>
+          <div class="flex gap-6">
+            <span>Privacy Policy</span><span>Terms & Conditions</span
+            ><span>Sitemap</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      function updateScrollProgress() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        const bar = document.getElementById("scrollProgressBar");
+        if (bar) {
+          bar.style.width = Math.min(Math.max(progress, 0), 100) + "%";
+        }
+      }
+      window.addEventListener("scroll", updateScrollProgress, { passive: true });
+      window.addEventListener("resize", updateScrollProgress);
+      document.addEventListener("DOMContentLoaded", updateScrollProgress);
+
+      function initScrollAnimations() {
+        if (!("IntersectionObserver" in window)) return;
+        const targets = document.querySelectorAll("section:not(.hero), .card");
+        targets.forEach((el) => el.classList.add("reveal"));
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.08,
+            rootMargin: "0px 0px -30px 0px",
+          }
+        );
+
+        targets.forEach((el) => observer.observe(el));
+      }
+      document.addEventListener("DOMContentLoaded", initScrollAnimations);
+
+      document.addEventListener("click", (e) => {
+        const faq = e.target.closest(".faq");
+        if (faq) {
+          faq.classList.toggle("open");
+          const i = faq.querySelector(".faq-icon");
+          if (i) i.textContent = faq.classList.contains("open") ? "−" : "+";
+        }
+        const tab = e.target.closest("[data-filter]");
+        if (tab) {
+          const g = tab.dataset.filterGroup;
+          document
+            .querySelectorAll(`[data-filter-tab="${g}"]`)
+            .forEach((x) => x.classList.remove("active"));
+          tab.classList.add("active");
+          const v = tab.dataset.filter;
+          document
+            .querySelectorAll(`[data-filter-item="${g}"]`)
+            .forEach((x) =>
+              x.classList.toggle(
+                "hidden",
+                v !== "all" && x.dataset.category !== v,
+              ),
+            );
+        }
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        const s = document.querySelector("#blogSearch");
+        if (s)
+          s.addEventListener("input", () => {
+            let q = s.value.toLowerCase();
+            document
+              .querySelectorAll("[data-blog]")
+              .forEach((x) =>
+                x.classList.toggle(
+                  "hidden",
+                  q && !x.innerText.toLowerCase().includes(q),
+                ),
+              );
+          });
+        const f = document.querySelector("#contactForm");
+        if (f)
+          f.addEventListener("submit", (e) => {
+            e.preventDefault();
+            document.querySelector("#formMsg").classList.remove("hidden");
+          });
+      });
+    </script>
+  </body>
+</html>

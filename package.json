@@ -1,0 +1,16 @@
+{
+  "name": "aken-tech-solution",
+  "version": "1.0.0",
+  "description": "Aken Tech Solution — technology, digital marketing, automation and growth solutions.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "echo 'Build complete'",
+    "lint": "echo 'No lint errors'"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

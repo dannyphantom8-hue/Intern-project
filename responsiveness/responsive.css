@@ -1,0 +1,263 @@
+/* ==========================================================================
+   Aken Tech Solution — Master Responsive Stylesheet
+   Imports Mobile, Tablet, and Desktop stylesheets
+   ========================================================================== */
+
+@import "./mobile.css";
+@import "./tablet.css";
+@import "./desktop.css";
+
+/* Universal responsive image & media handling */
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+/* Fluid responsive box model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ==========================================================================
+   Modern Frosted Glassmorphism, Refined Border Radii & Smooth Animations
+   ========================================================================== */
+
+/* Frosted Glass Header */
+header {
+  background: rgba(255, 255, 255, 0.90) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+  box-shadow: 0 4px 20px -4px rgba(10, 31, 68, 0.05) !important;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Modern Card Glass Effect & Border Radius */
+.card,
+.service-card {
+  border-radius: 18px !important;
+  background: rgba(255, 255, 255, 0.90) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  box-shadow: 0 8px 24px -4px rgba(10, 31, 68, 0.05),
+              0 0 0 1px rgba(255, 255, 255, 0.9) inset !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease !important;
+  will-change: transform, box-shadow;
+}
+
+.card:hover,
+.service-card:hover {
+  transform: translateY(-6px) scale(1.012) !important;
+  box-shadow: 0 20px 36px -6px rgba(18, 111, 232, 0.15),
+              0 6px 14px -3px rgba(10, 31, 68, 0.06),
+              0 0 0 1px rgba(18, 111, 232, 0.22) inset !important;
+  border-color: rgba(18, 111, 232, 0.35) !important;
+}
+
+/* Modern Rounded Buttons with Hover & Active Animations */
+.btn {
+  border-radius: 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  padding: 0.72rem 1.15rem !important;
+  font-weight: 700 !important;
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px -3px rgba(18, 111, 232, 0.32) !important;
+}
+
+.btn:active {
+  transform: scale(0.97) !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #126fe8 0%, #0d5ecb 100%) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #1579fc 0%, #1066dc 100%) !important;
+}
+
+.btn-light {
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #0a1f44 !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+}
+
+.btn-outline {
+  border: 1.5px solid #b9d0ec !important;
+  color: #126fe8 !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.btn-outline:hover {
+  background: #126fe8 !important;
+  color: #fff !important;
+  border-color: #126fe8 !important;
+}
+
+/* Glass Stat Strip */
+.stat-strip {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 10px 30px -8px rgba(10, 31, 68, 0.05),
+              0 0 0 1px rgba(255, 255, 255, 0.8) inset !important;
+}
+
+/* Pill Tabs with Glassmorphism */
+.tab {
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(205, 220, 235, 0.85) !important;
+  padding: 0.55rem 1rem !important;
+  font-weight: 700 !important;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.tab:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px -3px rgba(18, 111, 232, 0.16) !important;
+  border-color: #126fe8 !important;
+  color: #126fe8 !important;
+}
+
+.tab.active {
+  background: linear-gradient(135deg, #126fe8 0%, #0d5bc5 100%) !important;
+  color: #fff !important;
+  border-color: #126fe8 !important;
+  box-shadow: 0 6px 20px -3px rgba(18, 111, 232, 0.35) !important;
+}
+
+/* Rounded Form Controls with Glass Effect */
+input, textarea, select {
+  border-radius: 12px !important;
+  border: 1px solid rgba(203, 213, 225, 0.9) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(8px) !important;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none !important;
+  border-color: #126fe8 !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(18, 111, 232, 0.18) !important;
+}
+
+/* FAQ Accordion Items with Glass Effect & Rounded Corners */
+.faq {
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.90) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(220, 229, 240, 0.85) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  margin-bottom: 0.85rem !important;
+  padding: 1.15rem !important;
+}
+
+.faq:hover {
+  border-color: #b9d0ec !important;
+  box-shadow: 0 6px 18px -4px rgba(10, 31, 68, 0.06) !important;
+}
+
+.faq.open {
+  box-shadow: 0 12px 28px -6px rgba(10, 31, 68, 0.1) !important;
+  border-color: #126fe8 !important;
+}
+
+.faq-answer {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Image & Feature Media Border Radius */
+.feature-img,
+.hero-media,
+.project-img,
+.blog-img {
+  border-radius: 16px !important;
+}
+
+/* Smooth Entrance Scroll Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px) scale(0.985);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Floating animation for icons and badges */
+.icon-circle {
+  border-radius: 9999px !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .icon-circle,
+.service-card:hover .icon-circle {
+  transform: scale(1.1) rotate(4deg);
+}
+
+/* Nav Link Underline Slide Animation */
+.desktop-nav .nav-link {
+  position: relative;
+  transition: color 0.2s ease, background 0.2s ease;
+  border-radius: 8px;
+  padding: 0.5rem 0.65rem !important;
+}
+
+.desktop-nav .nav-link:hover {
+  color: #126fe8 !important;
+  background: rgba(18, 111, 232, 0.06) !important;
+}
+
+.desktop-nav .nav-link.active {
+  color: #126fe8 !important;
+  background: rgba(18, 111, 232, 0.09) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

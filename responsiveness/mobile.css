@@ -1,0 +1,293 @@
+/* ==========================================================================
+   Aken Tech Solution — Mobile Responsiveness Stylesheet
+   Target: Mobile Devices (Viewport width < 768px)
+   ========================================================================== */
+
+@media (max-width: 767.98px) {
+  /* Prevent horizontal overflow on mobile screens */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Container padding for mobile screens */
+  .container-x {
+    width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Fluid Mobile Typography */
+  h1, .hero-title {
+    font-size: 1.85rem !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  h2, .section-title {
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
+  }
+
+  h3 {
+    font-size: 1.2rem !important;
+    line-height: 1.35 !important;
+  }
+
+  p {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Top Bar adjustments */
+  .topbar {
+    font-size: 0.72rem !important;
+  }
+  .topbar .container-x {
+    height: auto !important;
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* Header sticky & z-index to stay above page content */
+  header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 99995 !important;
+  }
+
+  /* Header & Mobile Toggle */
+  .mobile-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    background: #f1f5f9;
+    color: #0f172a;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 100005 !important;
+    border: 1px solid #e2e8f0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-toggle:hover,
+  .mobile-toggle:active {
+    background: #e2e8f0;
+    color: #126fe8;
+  }
+
+  .desktop-nav {
+    display: none !important;
+  }
+
+  /* Backdrop overlay with blur when mobile menu is open */
+  body.menu-open::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 31, 68, 0.42);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 99990;
+    pointer-events: auto;
+    animation: backdropFade 0.22s ease-out forwards;
+    cursor: pointer;
+  }
+
+  @keyframes backdropFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Mobile Navigation (Glass Effect, Border Radius: 18px, Width: comfortable dropdown) */
+  .mobile-menu,
+  #mobileMenu,
+  .mobile-nav {
+    position: absolute !important;
+    top: calc(100% + 6px) !important;
+    right: 12px !important;
+    left: auto !important;
+    bottom: auto !important;
+    height: auto !important;
+    max-height: calc(100vh - 90px) !important;
+    width: min(320px, calc(100vw - 24px)) !important;
+    background: rgba(255, 255, 255, 0.97) !important;
+    backdrop-filter: blur(20px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
+    box-shadow: 0 18px 40px -6px rgba(10, 31, 68, 0.22),
+                0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+                0 4px 14px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid rgba(226, 232, 240, 0.9) !important;
+    border-radius: 18px !important;
+    z-index: 100000 !important;
+    padding: 0.85rem 0.85rem 1.1rem !important;
+    overflow-y: auto !important;
+    display: none !important;
+    flex-direction: column !important;
+    transform-origin: top right !important;
+  }
+
+  /* Opens / slides out when open class is active */
+  .mobile-menu.open,
+  #mobileMenu.open,
+  .mobile-nav.open {
+    display: flex !important;
+    animation: mobileMenuGlassSlideIn 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  }
+
+  @keyframes mobileMenuGlassSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px) scale(0.95) translateX(10px);
+      filter: blur(4px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1) translateX(0);
+      filter: blur(0);
+    }
+  }
+
+  .mobile-menu a,
+  #mobileMenu a,
+  .mobile-nav a {
+    padding: 0.62rem 0.75rem !important;
+    font-size: 0.92rem !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    border-bottom: 1px solid rgba(241, 245, 249, 0.75) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    border-radius: 10px !important;
+  }
+
+  .mobile-menu a:hover,
+  #mobileMenu a:hover,
+  .mobile-menu a.active,
+  #mobileMenu a.active {
+    color: #0d62d0 !important;
+    background: rgba(18, 111, 232, 0.08) !important;
+    padding-left: 0.95rem !important;
+    transform: translateX(3px) !important;
+  }
+
+  .mobile-menu.open a:nth-child(1) { animation: itemSlideIn 0.22s ease-out 0.03s backwards; }
+  .mobile-menu.open a:nth-child(2) { animation: itemSlideIn 0.22s ease-out 0.06s backwards; }
+  .mobile-menu.open a:nth-child(3) { animation: itemSlideIn 0.22s ease-out 0.09s backwards; }
+  .mobile-menu.open a:nth-child(4) { animation: itemSlideIn 0.22s ease-out 0.12s backwards; }
+  .mobile-menu.open a:nth-child(5) { animation: itemSlideIn 0.22s ease-out 0.15s backwards; }
+  .mobile-menu.open a:nth-child(6) { animation: itemSlideIn 0.22s ease-out 0.18s backwards; }
+  .mobile-menu.open a:nth-child(7) { animation: itemSlideIn 0.22s ease-out 0.21s backwards; }
+  .mobile-menu.open a:nth-child(8) { animation: itemSlideIn 0.22s ease-out 0.24s backwards; }
+
+  @keyframes itemSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Hero Section Mobile Layout */
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    text-align: left !important;
+  }
+
+  .hero-buttons {
+    flex-direction: column !important;
+    width: 100%;
+    gap: 0.75rem !important;
+  }
+
+  .hero-buttons .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Stats Section: 2x2 Grid on Mobile */
+  .stats-grid, .stat-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+
+  /* Cards Grids: 1 column on Mobile */
+  .grid-cards,
+  .service-grid,
+  .projects-grid,
+  .blog-grid,
+  .values-grid,
+  .team-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Filter Tabs: Horizontal Scroll with momentum */
+  .filter-tabs {
+    display: flex !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 0.5rem !important;
+    gap: 0.5rem !important;
+    scrollbar-width: none !important;
+  }
+
+  .filter-tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .filter-tabs .tab-btn {
+    flex-shrink: 0 !important;
+    font-size: 0.85rem !important;
+    padding: 0.45rem 0.9rem !important;
+  }
+
+  /* Contact Section: Stacked Form and Map */
+  .contact-layout {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .map-container {
+    height: 300px !important;
+    width: 100% !important;
+  }
+
+  /* Touch-friendly buttons (min 44px height) */
+  .btn {
+    min-height: 44px;
+    padding: 0.65rem 1.15rem;
+    font-size: 0.95rem;
+  }
+
+  /* Footer on mobile */
+  footer .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .footer-bottom .container-x {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 0.75rem !important;
+  }
+}

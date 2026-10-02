@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Aken Tech Solution — Desktop Responsiveness Stylesheet
+   Target: Laptops & Large Desktop Displays (Viewport width >= 1024px)
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  /* Desktop Container */
+  .container-x {
+    max-width: 1240px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  /* Full Scale Desktop Typography */
+  h1, .hero-title {
+    font-size: 3rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.025em !important;
+  }
+
+  h2, .section-title {
+    font-size: 2.25rem !important;
+    line-height: 1.25 !important;
+  }
+
+  h3 {
+    font-size: 1.45rem !important;
+  }
+
+  /* Navigation on Desktop */
+  .mobile-toggle {
+    display: none !important;
+  }
+
+  .desktop-nav {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Hero Section Desktop Layout */
+  .hero-grid {
+    grid-template-columns: 1.1fr 0.9fr !important;
+    gap: 3.5rem !important;
+    align-items: center !important;
+  }
+
+  /* Multi-column Grids on Desktop */
+  .service-grid,
+  .blog-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  .projects-grid,
+  .values-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 1.75rem !important;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  /* Stats Section: 4 Columns */
+  .stats-grid, .stat-strip {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  /* Contact Layout Desktop */
+  .contact-layout {
+    grid-template-columns: 1.2fr 1fr !important;
+    gap: 3rem !important;
+  }
+
+  .map-container {
+    height: 100% !important;
+    min-height: 480px !important;
+  }
+
+  /* Footer on Desktop: 4 Columns */
+  footer .footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr !important;
+    gap: 3rem !important;
+  }
+
+  /* Generous section vertical rhythm */
+  section {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+
+  section.hero {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+}

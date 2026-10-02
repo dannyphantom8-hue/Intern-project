@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>About Us | Aken Tech Solution</title>
+    <meta
+      name="description"
+      content="Aken Tech Solution — technology, digital marketing, automation and growth solutions."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/responsiveness/responsive.css" />
+    <script src="/responsiveness/menu.js" defer></script>
+    <style>
+      :root {
+        --navy: #0a1f44;
+        --blue: #126fe8;
+        --light: #eaf3ff;
+        --text: #172033;
+        --muted: #64748b;
+        --border: #dce5f0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        color: var(--text);
+      }
+      .container-x {
+        max-width: 1200px;
+        margin: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .card {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 5px 18px rgba(10, 31, 68, 0.06);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+      }
+      .card:hover, .service-card:hover {
+        transform: translateY(-4px) scale(1.025);
+        box-shadow: 0 16px 32px -4px rgba(10, 31, 68, 0.12), 0 8px 16px -4px rgba(10, 31, 68, 0.06);
+        border-color: #b9d0ec;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal.active.card:hover {
+        transform: translateY(-4px) scale(1.025);
+        box-shadow: 0 16px 32px -4px rgba(10, 31, 68, 0.12), 0 8px 16px -4px rgba(10, 31, 68, 0.06);
+        border-color: #b9d0ec;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      }
+      .scroll-progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #126fe8 0%, #38bdf8 50%, #00e5ff 100%);
+        box-shadow: 0 0 10px rgba(18, 111, 232, 0.7);
+        z-index: 99999;
+        pointer-events: none;
+        transition: width 0.08s ease-out;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        font-weight: 700;
+        transition: 0.2s;
+      }
+      .btn-primary {
+        background: #126fe8;
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: #0b5ecb;
+        transform: translateY(-1px);
+      }
+      .btn-light {
+        background: #fff;
+        color: #0a1f44;
+      }
+      .btn-outline {
+        border: 1px solid #b9d0ec;
+        color: #126fe8;
+        background: #fff;
+      }
+      .section {
+        padding: 72px 0;
+      }
+      .eyebrow {
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        font-weight: 800;
+        color: #126fe8;
+        text-transform: uppercase;
+      }
+      .section-title {
+        font-size: clamp(1.7rem, 3vw, 2.5rem);
+        line-height: 1.08;
+        font-weight: 800;
+        color: #0a1f44;
+      }
+      .nav-link {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #24324b;
+        padding: 0.65rem 0.45rem;
+        border-bottom: 2px solid transparent;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: #126fe8;
+        border-color: #126fe8;
+      }
+      .topbar {
+        background: #0a1f44;
+        color: #fff;
+        font-size: 12px;
+      }
+      .logo-mark {
+        font-weight: 900;
+        font-style: italic;
+        letter-spacing: -0.08em;
+        font-size: 30px;
+        color: #126fe8;
+        line-height: 0.8;
+      }
+      .logo-name {
+        font-weight: 800;
+        line-height: 1.05;
+        color: #0a1f44;
+      }
+      .hero {
+        position: relative;
+        overflow: hidden;
+        background: #071b37;
+        min-height: 390px;
+      }
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.52;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          #061a35 5%,
+          rgba(6, 26, 53, 0.86) 40%,
+          rgba(6, 26, 53, 0.15) 100%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+      .stat-strip {
+        background: #fff;
+        border-bottom: 1px solid #e5edf6;
+        border-top: 1px solid #e5edf6;
+      }
+      .stat {
+        padding: 22px 12px;
+        text-align: center;
+      }
+      .stat + .stat {
+        border-left: 1px solid #dce5f0;
+      }
+      .icon-circle {
+        width: 48px;
+        height: 48px;
+        border-radius: 999px;
+        background: #eaf3ff;
+        color: #126fe8;
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+        font-weight: 800;
+      }
+      .feature-img {
+        height: 190px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .dark-section {
+        background: #061b38;
+        color: #fff;
+      }
+      .dark-section .section-title {
+        color: #fff;
+      }
+      .tabs {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        scrollbar-width: none;
+      }
+      .tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .tab {
+        white-space: nowrap;
+        border: 1px solid #cddceb;
+        border-radius: 999px;
+        padding: 0.55rem 0.9rem;
+        font-size: 0.82rem;
+        font-weight: 700;
+        background: #fff;
+        color: #263852;
+      }
+      .tab.active {
+        background: #126fe8;
+        color: #fff;
+        border-color: #126fe8;
+      }
+      .footer-bottom {
+        background: #04162d;
+        color: #fff;
+      }
+      .mobile-menu {
+        display: none;
+      }
+      .mobile-menu.open {
+        display: block;
+      }
+      .faq-answer {
+        display: none;
+      }
+      .faq.open .faq-answer {
+        display: block;
+      }
+      @media (max-width: 767px) {
+        .section {
+          padding: 48px 0;
+        }
+        .container-x {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+        .desktop-nav {
+          display: none;
+        }
+        .mobile-toggle {
+          display: block;
+        }
+        .hero {
+          min-height: 500px;
+        }
+        .hero-media {
+          opacity: 0.38;
+        }
+        .hero-overlay {
+          background: linear-gradient(
+            90deg,
+            #061a35 0%,
+            rgba(6, 26, 53, 0.88) 55%,
+            rgba(6, 26, 53, 0.45)
+          );
+        }
+        .stat-strip .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .stat + .stat {
+          border-left: 0;
+          border-top: 1px solid #dce5f0;
+        }
+        .stat {
+          padding: 16px 8px;
+        }
+      }
+      @media (min-width: 768px) {
+        .mobile-toggle {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="scrollProgressBar" class="scroll-progress-bar" style="width: 0%;"></div>
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+      <div class="topbar">
+        <div class="container-x h-8 flex items-center justify-between">
+          <span>Your Growth Partner in Technology & Marketing</span>
+          <div class="hidden sm:flex gap-4">
+            <span>☎ +91 98765 43210</span><span>✉ hello@akentech.in</span
+            ><span>in</span><span>◎</span><span>▶</span>
+          </div>
+        </div>
+      </div>
+      <div class="container-x h-16 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2"
+          ><span class="logo-mark">AT</span
+          ><span class="logo-name text-sm">Aken Tech<br />Solution</span></a
+        >
+        <nav class="desktop-nav flex items-center gap-2">
+          <a class="nav-link" href="index.html">Home</a
+          ><a class="nav-link active" href="about.html">About</a
+          ><a class="nav-link" href="services.html">Services</a
+          ><a class="nav-link" href="products.html">Products</a
+          ><a class="nav-link" href="industries.html">Industries</a
+          ><a class="nav-link" href="portfolio.html">Portfolio</a
+          ><a class="nav-link" href="blog.html">Blog</a
+          ><a class="nav-link" href="contact.html">Contact</a>
+        </nav>
+        <a
+          href="contact.html"
+          class="btn btn-primary text-xs hidden md:inline-flex"
+          >Talk to an Expert →</a
+        ><button
+          class="mobile-toggle text-2xl"
+          onclick="toggleMenu(event)"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+      </div>
+      <div
+        id="mobileMenu"
+        class="mobile-menu md:hidden border-t bg-white px-5 pb-4"
+      >
+        <a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="index.html"
+          >Home</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold text-blue-600"
+          href="about.html"
+          >About</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="services.html"
+          >Services</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="products.html"
+          >Products</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="industries.html"
+          >Industries</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="portfolio.html"
+          >Portfolio</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="blog.html"
+          >Blog</a
+        ><a
+          class="block py-3 border-b border-slate-100 font-semibold"
+          href="contact.html"
+          >Contact</a
+        ><a
+          href="contact.html"
+          class="btn btn-primary mt-4 w-full justify-center"
+          >Talk to an Expert →</a
+        >
+      </div>
+    </header>
+    <section class="hero">
+      <div
+        class="hero-media"
+        style="
+          background-image: url(&quot;https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80&quot;);
+        "
+      ></div>
+      <div class="hero-overlay"></div>
+      <div
+        class="container-x hero-content min-h-[390px] flex items-center py-16"
+      >
+        <div class="max-w-2xl text-white">
+          <div class="text-sm text-sky-300 mb-4">Home › About</div>
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-[1.02]">
+            About Aken Tech <span class="text-sky-400">Solution</span>
+          </h1>
+          <p class="text-lg text-slate-200 mt-5 max-w-xl">
+            We are a technology and digital marketing company helping businesses
+            and organizations grow with innovative, result-driven solutions.
+          </p>
+          <div class="flex flex-wrap gap-3 mt-7">
+            <a class="btn btn-primary" href="contact.html">Our Story →</a
+            ><a class="btn btn-light" href="services.html"
+              >Explore Our Services →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="stat-strip">
+      <div class="container-x grid grid-cols-2 md:grid-cols-4">
+        <div class="stat">
+          <div class="text-2xl font-extrabold text-blue-600">500+</div>
+          <div class="text-sm font-semibold">Happy Clients</div>
+        </div>
+        <div class="stat">
+          <div class="text-2xl font-extrabold text-blue-600">5+</div>
+          <div class="text-sm font-semibold">Years of Experience</div>
+        </div>
+        <div class="stat">
+          <div class="text-2xl font-extrabold text-blue-600">100+</div>
+          <div class="text-sm font-semibold">Projects Delivered</div>
+        </div>
+        <div class="stat">
+          <div class="text-2xl font-extrabold text-blue-600">4.8/5</div>
+          <div class="text-sm font-semibold">Client Satisfaction</div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container-x grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <div class="eyebrow">OUR STORY</div>
+          <h2 class="section-title mt-2">From Ideas to Real Impact</h2>
+          <p class="text-slate-600 mt-5">
+            Aken Tech Solution was founded with a simple belief — technology can
+            create real opportunities for businesses, communities, and people.
+          </p>
+          <p class="text-slate-600 mt-4">
+            What started as a small team with big dreams has now grown into a
+            trusted technology partner for businesses across India and beyond.
+            We combine creativity, technology, and strategy to deliver solutions
+            that create measurable growth and long-term value.
+          </p>
+          <a class="btn btn-primary mt-6" href="contact.html">Our Journey →</a>
+        </div>
+        <img
+          class="rounded-xl w-full h-[360px] object-cover"
+          src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80"
+          alt="Modern office"
+        />
+      </div>
+    </section>
+    <section class="section bg-slate-50">
+      <div class="container-x grid md:grid-cols-2 gap-6">
+        <article class="card p-8 bg-blue-50">
+          <div class="icon-circle">◎</div>
+          <h3 class="font-extrabold text-xl mt-4">Our Mission</h3>
+          <p class="text-slate-600 mt-2">
+            To empower businesses and organizations with innovative digital
+            solutions that drive growth, efficiency, and positive impact.
+          </p>
+        </article>
+        <article class="card p-8 bg-emerald-50">
+          <div class="icon-circle">◉</div>
+          <h3 class="font-extrabold text-xl mt-4">Our Vision</h3>
+          <p class="text-slate-600 mt-2">
+            To be a trusted global technology partner, recognized for our
+            innovation, customer focus, and commitment to a better tomorrow.
+          </p>
+        </article>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container-x">
+        <div class="eyebrow">OUR VALUES</div>
+        <h2 class="section-title mt-2">What Drives Us</h2>
+        <div class="grid md:grid-cols-4 gap-5 mt-8">
+          <article class="card p-6 text-center">
+            <div class="icon-circle mx-auto">💡</div>
+            <h3 class="font-extrabold mt-4">Innovation</h3>
+            <p class="text-sm text-slate-600 mt-2">
+              We embrace new ideas and technologies.
+            </p>
+          </article>
+          <article class="card p-6 text-center">
+            <div class="icon-circle mx-auto">💡</div>
+            <h3 class="font-extrabold mt-4">Integrity</h3>
+            <p class="text-sm text-slate-600 mt-2">
+              We believe in transparency and ethical practices.
+            </p>
+          </article>
+          <article class="card p-6 text-center">
+            <div class="icon-circle mx-auto">💡</div>
+            <h3 class="font-extrabold mt-4">Client Success</h3>
+            <p class="text-sm text-slate-600 mt-2">Your goals are our goals.</p>
+          </article>
+          <article class="card p-6 text-center">
+            <div class="icon-circle mx-auto">💡</div>
+            <h3 class="font-extrabold mt-4">Social Impact</h3>
+            <p class="text-sm text-slate-600 mt-2">
+              We use technology to create a positive difference.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="dark-section section">
+      <div class="container-x grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <div class="eyebrow text-sky-300">WHY CHOOSE AKEN TECH SOLUTION</div>
+          <h2 class="section-title mt-2">
+            More Than a Service Provider,<br />A Growth Partner
+          </h2>
+          <p class="text-slate-300 mt-4">
+            We don't just deliver solutions, we build long-term partnerships.
+            Our team works closely with you to understand your goals and turn
+            them into measurable results.
+          </p>
+          <a href="contact.html" class="btn btn-primary mt-6">Work With Us →</a>
+        </div>
+        <div class="grid gap-5">
+          <div class="flex gap-4">
+            <div class="icon-circle shrink-0">✓</div>
+            <div>
+              <h3 class="font-extrabold">Industry Expertise</h3>
+              <p class="text-slate-300 text-sm mt-1">
+                Deep knowledge across multiple industries
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="icon-circle shrink-0">✓</div>
+            <div>
+              <h3 class="font-extrabold">Customized Solutions</h3>
+              <p class="text-slate-300 text-sm mt-1">
+                Tailored to your unique business needs
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="icon-circle shrink-0">✓</div>
+            <div>
+              <h3 class="font-extrabold">End-to-End Support</h3>
+              <p class="text-slate-300 text-sm mt-1">
+                From strategy to execution and beyond
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="icon-circle shrink-0">✓</div>
+            <div>
+              <h3 class="font-extrabold">Long-Term Partnership</h3>
+              <p class="text-slate-300 text-sm mt-1">
+                We grow with you, not just for a project
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container-x">
+        <div class="eyebrow">OUR TEAM</div>
+        <h2 class="section-title mt-2">Meet the People Behind Aken Tech</h2>
+        <div class="grid md:grid-cols-3 gap-5 mt-8">
+          <article class="card overflow-hidden">
+            <img
+              class="h-52 w-full object-cover"
+              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=80"
+              alt=""
+            />
+            <div class="p-5">
+              <h3 class="font-extrabold">Sunil Sharma</h3>
+              <p class="text-sm text-slate-500 mt-1">
+                Co-Founder & Business Head
+              </p>
+              <div class="text-blue-600 mt-4">in</div>
+            </div>
+          </article>
+          <article class="card overflow-hidden">
+            <img
+              class="h-52 w-full object-cover"
+              src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=80"
+              alt=""
+            />
+            <div class="p-5">
+              <h3 class="font-extrabold">Shivshant Dubey</h3>
+              <p class="text-sm text-slate-500 mt-1">
+                Co-Founder & Technical Head
+              </p>
+              <div class="text-blue-600 mt-4">in</div>
+            </div>
+          </article>
+          <article class="card overflow-hidden">
+            <img
+              class="h-52 w-full object-cover"
+              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=700&q=80"
+              alt=""
+            />
+            <div class="p-5">
+              <h3 class="font-extrabold">Our Team</h3>
+              <p class="text-sm text-slate-500 mt-1">
+                Developers | Marketers | Designers
+              </p>
+              <div class="text-blue-600 mt-4">in</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <section class="dark-section py-10">
+        <div
+          class="container-x flex flex-col lg:flex-row items-start lg:items-center justify-between gap-7"
+        >
+          <div>
+            <div class="eyebrow text-sky-300">READY TO GROW?</div>
+            <h2 class="text-2xl md:text-3xl font-extrabold mt-1">
+              Turn Your Goals Into Real Results
+            </h2>
+            <p class="text-slate-300 mt-2">
+              Get a free consultation and discover how Aken Tech Solution can
+              help you grow faster.
+            </p>
+          </div>
+          <a href="contact.html" class="btn btn-light">Get Free Consultation</a>
+        </div>
+      </section>
+      <div class="bg-white">
+        <div class="container-x py-12 grid md:grid-cols-4 gap-10">
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <span class="logo-mark">AT</span
+              ><span class="logo-name text-sm">Aken Tech Solution</span>
+            </div>
+            <p class="text-sm text-slate-600">
+              Aken Tech Solution helps businesses & organizations grow with
+              technology, automation and performance marketing.
+            </p>
+            <div class="flex gap-3 mt-5 text-lg">
+              <span>in</span><span>◎</span><span>▶</span><span>f</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-extrabold mb-3">Quick Links</h3>
+            <div class="space-y-2 text-sm text-slate-600">
+              <a class="block" href="index.html">Home</a
+              ><a class="block" href="about.html">About Us</a
+              ><a class="block" href="services.html">Services</a
+              ><a class="block" href="products.html">Products</a
+              ><a class="block" href="industries.html">Industries</a
+              ><a class="block" href="portfolio.html">Portfolio</a
+              ><a class="block" href="blog.html">Blog</a
+              ><a class="block" href="contact.html">Contact</a>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-extrabold mb-3">Our Services</h3>
+            <div class="space-y-2 text-sm text-slate-600">
+              <div>Performance Marketing</div>
+              <div>Real Estate Solutions</div>
+              <div>Web Development</div>
+              <div>Custom Software & CRM</div>
+              <div>WhatsApp Automation</div>
+              <div>AI Calling & AI Agents</div>
+              <div>NGO Digital Solutions</div>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-extrabold mb-3">Contact Us</h3>
+            <div class="space-y-3 text-sm text-slate-600">
+              <div>☎ +91 98765 43210</div>
+              <div>✉ hello@akentech.in</div>
+              <div>⌖ Thane, Mumbai, India</div>
+              <div>◉ Serving Clients Worldwide</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div
+          class="container-x py-4 flex flex-col sm:flex-row justify-between gap-2 text-xs"
+        >
+          <span>© 2025 Aken Tech Solution. All rights reserved.</span>
+          <div class="flex gap-6">
+            <span>Privacy Policy</span><span>Terms & Conditions</span
+            ><span>Sitemap</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      function updateScrollProgress() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        const bar = document.getElementById("scrollProgressBar");
+        if (bar) {
+          bar.style.width = Math.min(Math.max(progress, 0), 100) + "%";
+        }
+      }
+      window.addEventListener("scroll", updateScrollProgress, { passive: true });
+      window.addEventListener("resize", updateScrollProgress);
+      document.addEventListener("DOMContentLoaded", updateScrollProgress);
+
+      function initScrollAnimations() {
+        if (!("IntersectionObserver" in window)) return;
+        const targets = document.querySelectorAll("section:not(.hero), .card");
+        targets.forEach((el) => el.classList.add("reveal"));
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.08,
+            rootMargin: "0px 0px -30px 0px",
+          }
+        );
+
+        targets.forEach((el) => observer.observe(el));
+      }
+      document.addEventListener("DOMContentLoaded", initScrollAnimations);
+
+      document.addEventListener("click", (e) => {
+        const faq = e.target.closest(".faq");
+        if (faq) {
+          faq.classList.toggle("open");
+          const i = faq.querySelector(".faq-icon");
+          if (i) i.textContent = faq.classList.contains("open") ? "−" : "+";
+        }
+        const tab = e.target.closest("[data-filter]");
+        if (tab) {
+          const g = tab.dataset.filterGroup;
+          document
+            .querySelectorAll(`[data-filter-tab="${g}"]`)
+            .forEach((x) => x.classList.remove("active"));
+          tab.classList.add("active");
+          const v = tab.dataset.filter;
+          document
+            .querySelectorAll(`[data-filter-item="${g}"]`)
+            .forEach((x) =>
+              x.classList.toggle(
+                "hidden",
+                v !== "all" && x.dataset.category !== v,
+              ),
+            );
+        }
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        const s = document.querySelector("#blogSearch");
+        if (s)
+          s.addEventListener("input", () => {
+            let q = s.value.toLowerCase();
+            document
+              .querySelectorAll("[data-blog]")
+              .forEach((x) =>
+                x.classList.toggle(
+                  "hidden",
+                  q && !x.innerText.toLowerCase().includes(q),
+                ),
+              );
+          });
+        const f = document.querySelector("#contactForm");
+        if (f)
+          f.addEventListener("submit", (e) => {
+            e.preventDefault();
+            document.querySelector("#formMsg").classList.remove("hidden");
+          });
+      });
+    </script>
+  </body>
+</html>
