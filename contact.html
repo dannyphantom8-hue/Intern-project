@@ -1,1022 +1,417 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Contact Us | Aken Tech Solution</title>
-    <meta
-      name="description"
-      content="Aken Tech Solution — technology, digital marketing, automation and growth solutions."
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="responsiveness/responsive.css" />
-    <script src="responsiveness/menu.js" defer></script>
-    <style>
-      :root {
-        --navy: #0a1f44;
-        --blue: #126fe8;
-        --light: #eaf3ff;
-        --text: #172033;
-        --muted: #64748b;
-        --border: #dce5f0;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family:
-          Inter,
-          ui-sans-serif,
-          system-ui,
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          sans-serif;
-        color: var(--text);
-      }
-      .container-x {
-        max-width: min(94vw, 1720px);
-        margin: auto;
-        padding-left: clamp(1rem, 2.5vw, 2.5rem);
-        padding-right: clamp(1rem, 2.5vw, 2.5rem);
-      }
-      .card {
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        background: #fff;
-        box-shadow: 0 5px 18px rgba(10, 31, 68, 0.06);
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-      }
-      .card:hover, .service-card:hover {
-        transform: translateY(-4px) scale(1.025);
-        box-shadow: 0 16px 32px -4px rgba(10, 31, 68, 0.12), 0 8px 16px -4px rgba(10, 31, 68, 0.06);
-        border-color: #b9d0ec;
-      }
-      .reveal {
-        opacity: 0;
-        transform: translateY(22px);
-        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-      }
-      .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .reveal.active.card:hover {
-        transform: translateY(-4px) scale(1.025);
-        box-shadow: 0 16px 32px -4px rgba(10, 31, 68, 0.12), 0 8px 16px -4px rgba(10, 31, 68, 0.06);
-        border-color: #b9d0ec;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .reveal {
-          opacity: 1 !important;
-          transform: none !important;
-          transition: none !important;
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a1f44">
+  <meta name="description" content="Contact Aken Tech Solution for web development, digital marketing, automation and custom software solutions.">
+  <title>Contact Us | Aken Tech Solution</title>
+
+  <!-- Tailwind CSS CDN: suitable for a simple static/GitHub Pages project. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#0A1F44",
+            deepnavy: "#061B38",
+            brand: "#126FE8",
+            pale: "#EAF3FF"
+          },
+          boxShadow: {
+            soft: "0 8px 28px rgba(10,31,68,.08)"
+          }
         }
       }
-      .scroll-progress-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #126fe8 0%, #38bdf8 50%, #00e5ff 100%);
-        box-shadow: 0 0 10px rgba(18, 111, 232, 0.7);
-        z-index: 99999;
-        pointer-events: none;
-        transition: width 0.08s ease-out;
-      }
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        border-radius: 8px;
-        padding: 0.75rem 1rem;
-        font-weight: 700;
-        transition: 0.2s;
-      }
-      .btn-primary {
-        background: #126fe8;
-        color: #fff;
-      }
-      .btn-primary:hover {
-        background: #0b5ecb;
-        transform: translateY(-1px);
-      }
-      .btn-light {
-        background: #fff;
-        color: #0a1f44;
-      }
-      .btn-outline {
-        border: 1px solid #b9d0ec;
-        color: #126fe8;
-        background: #fff;
-      }
-      .section {
-        padding: 72px 0;
-      }
-      .eyebrow {
-        font-size: 0.78rem;
-        letter-spacing: 0.12em;
-        font-weight: 800;
-        color: #126fe8;
-        text-transform: uppercase;
-      }
-      .section-title {
-        font-size: clamp(1.7rem, 3vw, 2.5rem);
-        line-height: 1.08;
-        font-weight: 800;
-        color: #0a1f44;
-      }
-      .nav-link {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #24324b;
-        padding: 0.65rem 0.45rem;
-        border-bottom: 2px solid transparent;
-      }
-      .nav-link:hover,
-      .nav-link.active {
-        color: #126fe8;
-        border-color: #126fe8;
-      }
-      .topbar {
-        background: #0a1f44;
-        color: #fff;
-        font-size: 12px;
-      }
-      .logo-mark {
-        font-weight: 900;
-        font-style: italic;
-        letter-spacing: -0.08em;
-        font-size: 30px;
-        color: #126fe8;
-        line-height: 0.8;
-      }
-      .logo-name {
-        font-weight: 800;
-        line-height: 1.05;
-        color: #0a1f44;
-      }
-      .hero {
-        position: relative;
-        overflow: hidden;
-        background: #071b37;
-        min-height: 390px;
-      }
-      .hero-media {
-        position: absolute;
-        inset: 0;
-        background-size: cover;
-        background-position: center;
-        opacity: 0.52;
-      }
-      .hero-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          90deg,
-          #061a35 5%,
-          rgba(6, 26, 53, 0.86) 40%,
-          rgba(6, 26, 53, 0.15) 100%
-        );
-      }
-      .hero-content {
-        position: relative;
-        z-index: 2;
-      }
-      .stat-strip {
-        background: #fff;
-        border-bottom: 1px solid #e5edf6;
-        border-top: 1px solid #e5edf6;
-      }
-      .stat {
-        padding: 22px 12px;
-        text-align: center;
-      }
-      .stat + .stat {
-        border-left: 1px solid #dce5f0;
-      }
-      .icon-circle {
-        width: 48px;
-        height: 48px;
-        border-radius: 999px;
-        background: #eaf3ff;
-        color: #126fe8;
-        display: grid;
-        place-items: center;
-        font-size: 22px;
-        font-weight: 800;
-      }
-      .feature-img {
-        height: 190px;
-        width: 100%;
-        object-fit: cover;
-        border-radius: 10px;
-      }
-      .dark-section {
-        background: #061b38;
-        color: #fff;
-      }
-      .dark-section .section-title {
-        color: #fff;
-      }
-      .tabs {
-        display: flex;
-        gap: 10px;
-        overflow-x: auto;
-        padding-bottom: 5px;
-        scrollbar-width: none;
-      }
-      .tabs::-webkit-scrollbar {
-        display: none;
-      }
-      .tab {
-        white-space: nowrap;
-        border: 1px solid #cddceb;
-        border-radius: 999px;
-        padding: 0.55rem 0.9rem;
-        font-size: 0.82rem;
-        font-weight: 700;
-        background: #fff;
-        color: #263852;
-      }
-      .tab.active {
-        background: #126fe8;
-        color: #fff;
-        border-color: #126fe8;
-      }
-      .footer-bottom {
-        background: #04162d;
-        color: #fff;
-      }
-      .mobile-menu {
-        display: none;
-      }
-      .mobile-menu.open {
-        display: block;
-      }
-      .faq-answer {
-        display: none;
-      }
-      .faq.open .faq-answer {
-        display: block;
-      }
-      @media (max-width: 767px) {
-        .section {
-          padding: 48px 0;
-        }
-        .container-x {
-          padding-left: 16px;
-          padding-right: 16px;
-        }
-        .desktop-nav {
-          display: none;
-        }
-        .mobile-toggle {
-          display: block;
-        }
-        .hero {
-          min-height: 500px;
-        }
-        .hero-media {
-          opacity: 0.38;
-        }
-        .hero-overlay {
-          background: linear-gradient(
-            90deg,
-            #061a35 0%,
-            rgba(6, 26, 53, 0.88) 55%,
-            rgba(6, 26, 53, 0.45)
-          );
-        }
-        .stat-strip .grid {
-          grid-template-columns: 1fr 1fr;
-        }
-        .stat + .stat {
-          border-left: 0;
-          border-top: 1px solid #dce5f0;
-        }
-        .stat {
-          padding: 16px 8px;
-        }
-      }
-      @media (min-width: 768px) {
-        .mobile-toggle {
-          display: none;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="mobileMenuBackdrop" class="mobile-backdrop" onclick="closeMenu(event)" aria-hidden="true"></div>
-    <div id="scrollProgressBar" class="scroll-progress-bar" style="width: 0%;"></div>
-    <header class="sticky top-0 z-50 bg-white shadow-sm">
-      <div class="topbar">
-        <div class="container-x h-8 flex items-center justify-between">
-          <span>Your Growth Partner in Technology & Marketing</span>
-          <div class="hidden sm:flex gap-4">
-            <span>☎ +91 98765 43210</span><span>✉ hello@akentech.in</span
-            ><span>in</span><span>◎</span><span>▶</span>
-          </div>
-        </div>
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    summary { list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    details[open] .faq-plus { transform: rotate(45deg); }
+    .hero-bg {
+      background-image:
+        linear-gradient(90deg, rgba(4,22,45,.98) 0%, rgba(4,22,45,.88) 45%, rgba(4,22,45,.30) 100%),
+        url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2000&q=85");
+      background-position: center;
+      background-size: cover;
+    }
+    .cta-bg {
+      background-image:
+        linear-gradient(90deg, rgba(4,22,45,.97), rgba(4,22,45,.72)),
+        url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1800&q=85");
+      background-position: center;
+      background-size: cover;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-slate-800 antialiased">
+  <!-- Top contact bar -->
+  <div class="bg-navy text-white">
+    <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-2 text-xs sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <p class="text-slate-200">Your Growth Partner in Technology &amp; Marketing</p>
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+        <a class="hover:text-sky-300" href="tel:+919876543210">☎ +91 98765 43210</a>
+        <a class="hover:text-sky-300" href="mailto:hello@akentech.in">✉ hello@akentech.in</a>
+        <a aria-label="LinkedIn" class="font-bold hover:text-sky-300" href="https://www.linkedin.com/company/akentechsolution" target="_blank" rel="noopener noreferrer">in</a>
+        <a aria-label="Instagram" class="hover:text-sky-300" href="https://www.instagram.com/akentechsolution" target="_blank" rel="noopener noreferrer">◎</a>
+        <a aria-label="YouTube" class="hover:text-sky-300" href="https://www.youtube.com/@akentechsolution" target="_blank" rel="noopener noreferrer">▶</a>
       </div>
-      <div class="container-x navbar-container h-16 flex items-center justify-between gap-3">
-        <a href="index.html" class="flex items-center gap-2.5 flex-shrink-0 group">
-          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-sky-400 flex items-center justify-center text-white shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform flex-shrink-0">
-            <svg class="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-          </div>
-          <div class="flex flex-col leading-tight">
-            <span class="font-black text-sm sm:text-base tracking-tight text-slate-900 flex items-center">
-              AKEN TECH
-            </span>
-            <span class="text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-blue-600">
-              SOLUTIONS
-            </span>
-          </div>
-        </a>
-        <nav class="desktop-nav flex items-center gap-1.5 lg:gap-2">
-          <a class="nav-link" href="index.html">Home</a
-          ><a class="nav-link" href="about.html">About</a
-          ><a class="nav-link" href="services.html">Services</a
-          ><a class="nav-link" href="products.html">Products</a
-          ><a class="nav-link" href="industries.html">Industries</a
-          ><a class="nav-link" href="portfolio.html">Portfolio</a
-          ><a class="nav-link" href="blog.html">Blog</a
-          ><a class="nav-link active" href="contact.html">Contact</a>
+    </div>
+  </div>
+
+  <!-- Header. Native details provides a no-JavaScript mobile menu. -->
+  <header class="sticky top-0 z-40 border-b border-slate-100 bg-white/95 shadow-sm backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+      <a href="index.html" class="flex shrink-0 items-center gap-2" aria-label="Aken Tech Solution home">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-blue-800 via-blue-600 to-sky-400 text-xl font-black italic tracking-tighter text-white shadow-md">AT</span>
+        <span class="leading-tight">
+          <span class="block text-sm font-black tracking-tight text-navy sm:text-base">AKEN TECH</span>
+          <span class="block text-[10px] font-bold uppercase tracking-[.2em] text-brand">Solutions</span>
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
+        <a class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 hover:text-brand" href="index.html">Home</a>
+        <a class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 hover:text-brand" href="about.html">About</a>
+        <a class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 hover:text-brand" href="services.html">Services</a>
+        <a class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 hover:text-brand" href="products.html">Products</a>
+        <a class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 hover:text-brand" href="industries.html">Industries</a>
+        <a class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 hover:text-brand" href="portfolio.html">Portfolio</a>
+        <a class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 hover:text-brand" href="blog.html">Blog</a>
+        <a class="rounded-lg bg-blue-50 px-3 py-2 text-sm font-bold text-brand" href="contact.html" aria-current="page">Contact</a>
+      </nav>
+
+      <div class="hidden shrink-0 sm:block">
+        <a href="#contact-form" class="inline-flex items-center rounded-lg bg-brand px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200">Talk to an Expert <span class="ml-2" aria-hidden="true">→</span></a>
+      </div>
+
+      <details class="relative lg:hidden">
+        <summary class="cursor-pointer rounded-lg border border-slate-200 px-3 py-2 text-xl text-navy hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-blue-100" aria-label="Open navigation menu">☰</summary>
+        <nav class="absolute right-0 top-14 z-50 w-64 rounded-xl border border-slate-200 bg-white p-3 shadow-xl" aria-label="Mobile navigation">
+          <a class="block rounded-lg px-4 py-3 font-semibold hover:bg-blue-50" href="index.html">Home</a>
+          <a class="block rounded-lg px-4 py-3 font-semibold hover:bg-blue-50" href="about.html">About</a>
+          <a class="block rounded-lg px-4 py-3 font-semibold hover:bg-blue-50" href="services.html">Services</a>
+          <a class="block rounded-lg px-4 py-3 font-semibold hover:bg-blue-50" href="products.html">Products</a>
+          <a class="block rounded-lg px-4 py-3 font-semibold hover:bg-blue-50" href="industries.html">Industries</a>
+          <a class="block rounded-lg px-4 py-3 font-semibold hover:bg-blue-50" href="portfolio.html">Portfolio</a>
+          <a class="block rounded-lg px-4 py-3 font-semibold hover:bg-blue-50" href="blog.html">Blog</a>
+          <a class="block rounded-lg bg-blue-50 px-4 py-3 font-bold text-brand" href="contact.html" aria-current="page">Contact</a>
+          <a class="mt-2 block rounded-lg bg-brand px-4 py-3 text-center font-bold text-white" href="#contact-form">Talk to an Expert →</a>
         </nav>
-        <div class="flex items-center gap-2 flex-shrink-0">
-          <a
-            href="contact.html"
-            class="btn btn-primary text-xs hidden sm:inline-flex md:inline-flex whitespace-nowrap flex-shrink-0 px-3.5 py-2"
-            >Talk to an Expert →</a
-          ><button
-            type="button"
-            class="mobile-toggle text-2xl p-1 text-slate-800 hover:text-blue-600 transition-colors"
-            onclick="toggleMenu(event)"
-            aria-label="Open navigation menu"
-            aria-expanded="false"
-          >
-            ☰
-          </button>
-        </div>
-      </div>
-      <div
-        id="mobileMenu"
-        class="mobile-menu lg:hidden border-t bg-white px-5 pb-4"
-        role="dialog"
-        aria-label="Mobile Navigation Menu"
-        aria-hidden="true"
-      >
-        <div class="menu-drawer-header flex items-center justify-between pb-2 mb-2 border-b border-slate-200">
-          <span class="font-bold text-xs uppercase tracking-wider text-slate-500">Navigation</span>
-          <button
-            type="button"
-            class="close-menu-btn text-slate-500 hover:text-red-600 hover:bg-slate-100 p-1.5 rounded-lg text-xl font-bold leading-none cursor-pointer transition-colors"
-            onclick="closeMenu(event)"
-            aria-label="Close navigation menu"
-          >&times;</button>
-        </div>
-        <a
-          class="block py-3 border-b border-slate-100 font-semibold"
-          href="index.html"
-          >Home</a
-        ><a
-          class="block py-3 border-b border-slate-100 font-semibold"
-          href="about.html"
-          >About</a
-        ><a
-          class="block py-3 border-b border-slate-100 font-semibold"
-          href="services.html"
-          >Services</a
-        ><a
-          class="block py-3 border-b border-slate-100 font-semibold"
-          href="products.html"
-          >Products</a
-        ><a
-          class="block py-3 border-b border-slate-100 font-semibold"
-          href="industries.html"
-          >Industries</a
-        ><a
-          class="block py-3 border-b border-slate-100 font-semibold"
-          href="portfolio.html"
-          >Portfolio</a
-        ><a
-          class="block py-3 border-b border-slate-100 font-semibold"
-          href="blog.html"
-          >Blog</a
-        ><a
-          class="block py-3 border-b border-slate-100 font-semibold text-blue-600"
-          href="contact.html"
-          >Contact</a
-        ><a
-          href="contact.html"
-          class="btn btn-primary mt-4 w-full justify-center"
-          >Talk to an Expert →</a
-        >
-      </div>
-    </header>
-    <section class="hero">
-      <div
-        class="hero-media"
-        style="
-          background-image: url(&quot;https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80&quot;);
-        "
-      ></div>
-      <div class="hero-overlay"></div>
-      <div
-        class="container-x hero-content min-h-[390px] flex items-center py-16"
-      >
+      </details>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero-bg relative isolate overflow-hidden">
+      <div class="mx-auto flex min-h-[390px] max-w-7xl items-center px-4 py-16 sm:px-6 lg:min-h-[430px] lg:px-8">
         <div class="max-w-2xl text-white">
-          <div class="text-sm text-sky-300 mb-4">Home › Contact</div>
-          <h1 class="text-4xl md:text-6xl font-extrabold leading-[1.02]">
-            Let's Build Something Great
-            <span class="text-sky-400">Together</span>
-          </h1>
-          <p class="text-lg text-slate-200 mt-5 max-w-xl">
-            Have a question, project idea, or need a consultation? We are here
-            to help you grow.
-          </p>
-          <div class="flex flex-wrap gap-3 mt-7">
-            <a class="btn btn-primary" href="contact.html">Contact Us Now →</a
-            ><a class="btn btn-light" href="services.html"
-              >Explore Our Services →</a
-            >
+          <p class="mb-5 text-sm font-medium text-sky-300"><a class="hover:underline" href="index.html">Home</a> <span aria-hidden="true">›</span> Contact</p>
+          <h1 class="text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">Let’s Build Something Great <span class="text-sky-400">Together</span></h1>
+          <p class="mt-5 max-w-xl text-base leading-7 text-slate-200 sm:text-lg">Have a question, project idea, or need a consultation? We are here to help you grow.</p>
+          <div class="mt-7 flex flex-wrap gap-x-5 gap-y-3 text-sm font-medium text-white">
+            <span class="flex items-center gap-2"><span class="text-sky-400">✓</span> Quick Response</span>
+            <span class="flex items-center gap-2"><span class="text-sky-400">✓</span> Expert Guidance</span>
+            <span class="flex items-center gap-2"><span class="text-sky-400">✓</span> No Obligation</span>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#contact-form" class="rounded-lg bg-brand px-5 py-3 font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Contact Us Now →</a>
+            <a href="services.html" class="rounded-lg border border-white/40 bg-white/10 px-5 py-3 font-bold text-white backdrop-blur transition hover:bg-white/20">Explore Our Services</a>
           </div>
         </div>
       </div>
     </section>
-    <section class="py-8">
-      <div class="container-x grid md:grid-cols-4 gap-5">
-        <a href="tel:+919876543210" class="card p-6 text-center group hover:border-blue-500 transition-all block">
-          <div class="icon-circle mx-auto bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white flex items-center justify-center transition-colors">
-            <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-          </div>
-          <h3 class="font-extrabold mt-4">Call Us</h3>
-          <p class="text-blue-900 font-bold text-sm mt-2 group-hover:text-blue-600 transition-colors">+91 98765 43210</p>
-          <p class="text-xs text-slate-500 mt-1">Mon - Sat, 9 AM - 7 PM</p>
+
+    <!-- Contact cards -->
+    <section class="border-b border-slate-100 bg-white py-7 sm:py-9" aria-label="Contact options">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 gap-4 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
+        <a href="tel:+919876543210" class="group rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-soft transition duration-200 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-100">
+          <span class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-blue-50 text-2xl text-brand transition group-hover:bg-brand group-hover:text-white" aria-hidden="true">☎</span>
+          <h2 class="mt-4 font-extrabold text-navy">Call Us</h2>
+          <p class="mt-2 text-sm font-bold text-blue-900">+91 98765 43210</p>
+          <p class="mt-1 text-xs text-slate-500">Mon–Sat, 9 AM–7 PM</p>
         </a>
-        <a href="mailto:hello@akentech.in" class="card p-6 text-center group hover:border-blue-500 transition-all block">
-          <div class="icon-circle mx-auto bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white flex items-center justify-center transition-colors">
-            <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-          </div>
-          <h3 class="font-extrabold mt-4">Email Us</h3>
-          <p class="text-blue-900 font-bold text-sm mt-2 group-hover:text-blue-600 transition-colors">hello@akentech.in</p>
-          <p class="text-xs text-slate-500 mt-1">We reply within 24 hours</p>
+        <a href="mailto:hello@akentech.in" class="group rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-soft transition duration-200 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-100">
+          <span class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-blue-50 text-2xl text-brand transition group-hover:bg-brand group-hover:text-white" aria-hidden="true">✉</span>
+          <h2 class="mt-4 font-extrabold text-navy">Email Us</h2>
+          <p class="mt-2 break-words text-sm font-bold text-blue-900">hello@akentech.in</p>
+          <p class="mt-1 text-xs text-slate-500">We aim to reply within 24 hours</p>
         </a>
-        <a href="https://maps.google.com/?q=Thane,Maharashtra" target="_blank" rel="noopener noreferrer" class="card p-6 text-center group hover:border-blue-500 transition-all block">
-          <div class="icon-circle mx-auto bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white flex items-center justify-center transition-colors">
-            <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-          </div>
-          <h3 class="font-extrabold mt-4">Visit Our Office</h3>
-          <p class="text-blue-900 font-bold text-sm mt-2 group-hover:text-blue-600 transition-colors">
-            Thane, Mumbai, India
-          </p>
-          <p class="text-xs text-blue-600 font-semibold mt-1">View on Map →</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Thane%2C+Maharashtra%2C+India" target="_blank" rel="noopener noreferrer" class="group rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-soft transition duration-200 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-100">
+          <span class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-blue-50 text-2xl text-brand transition group-hover:bg-brand group-hover:text-white" aria-hidden="true">⌖</span>
+          <h2 class="mt-4 font-extrabold text-navy">Visit Our Office</h2>
+          <p class="mt-2 text-sm font-bold text-blue-900">Thane, Maharashtra, India</p>
+          <p class="mt-1 text-xs font-semibold text-brand">View on Map →</p>
         </a>
-        <a href="https://wa.me/919876543210?text=Hi%20Aken%20Tech%20Solution,%20I%20would%20like%20to%20inquire%20about%20your%20services" target="_blank" rel="noopener noreferrer" class="card p-6 text-center group hover:border-emerald-500 transition-all block">
-          <div class="icon-circle mx-auto bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white flex items-center justify-center transition-colors">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.11 7.44C8.95 7.44 8.68 7.5 8.46 7.74C8.23 7.97 7.61 8.56 7.61 9.77C7.61 10.97 8.5 12.13 8.62 12.29C8.75 12.45 10.34 14.91 12.78 15.96C13.36 16.21 13.81 16.36 14.16 16.47C14.74 16.66 15.26 16.63 15.68 16.57C16.15 16.5 17.12 15.98 17.32 15.42C17.53 14.85 17.53 14.37 17.47 14.27C17.41 14.17 17.25 14.11 17.01 13.99C16.78 13.88 15.61 13.3 15.4 13.22C15.18 13.14 15.02 13.1 14.86 13.34C14.71 13.58 14.27 14.11 14.13 14.27C14 14.43 13.86 14.45 13.63 14.33C13.4 14.21 12.63 13.96 11.72 13.15C11.01 12.52 10.53 11.74 10.39 11.51C10.26 11.27 10.37 11.14 10.49 11.03C10.6 10.92 10.73 10.75 10.85 10.61C10.97 10.47 11.01 10.37 11.09 10.21C11.17 10.05 11.13 9.91 11.07 9.79C11.01 9.67 10.57 8.58 10.39 8.13C10.21 7.7 10.03 7.76 9.89 7.75C9.76 7.75 9.6 7.74 9.44 7.74C9.28 7.74 9.11 7.44 9.11 7.44Z"/>
-            </svg>
-          </div>
-          <h3 class="font-extrabold mt-4">Chat on WhatsApp</h3>
-          <p class="text-emerald-700 font-bold text-sm mt-2 group-hover:text-emerald-600 transition-colors">+91 98765 43210</p>
-          <p class="text-xs text-slate-500 mt-1">Instant Support →</p>
+        <a href="https://wa.me/919876543210?text=Hi%20Aken%20Tech%20Solution%2C%20I%20would%20like%20to%20ask%20about%20your%20services." target="_blank" rel="noopener noreferrer" class="group rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-soft transition duration-200 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-emerald-100">
+          <span class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-emerald-50 text-2xl text-emerald-600 transition group-hover:bg-emerald-600 group-hover:text-white" aria-hidden="true">◉</span>
+          <h2 class="mt-4 font-extrabold text-navy">Chat on WhatsApp</h2>
+          <p class="mt-2 text-sm font-bold text-emerald-700">+91 98765 43210</p>
+          <p class="mt-1 text-xs text-slate-500">Quick online support</p>
         </a>
       </div>
     </section>
-    <section class="section pt-4">
-      <div class="container-x grid lg:grid-cols-2 gap-10">
+
+    <!-- Form and map -->
+    <section id="contact-form" class="scroll-mt-28 py-16 sm:py-20">
+      <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8">
         <div>
-          <div class="eyebrow">SEND US A MESSAGE</div>
-          <h2 class="section-title mt-2">Get in Touch</h2>
-          <p class="text-slate-600 mt-2">
-            Fill out the form and our team will get back to you as soon as
-            possible.
-          </p>
-          <form id="contactForm" class="mt-7 grid md:grid-cols-2 gap-5">
-            <label class="text-sm font-semibold"
-              >Your Name *<input
-                required
-                class="mt-2 w-full border rounded-lg p-3"
-                placeholder="Enter your name" /></label
-            ><label class="text-sm font-semibold"
-              >Your Email *<input
-                required
-                type="email"
-                class="mt-2 w-full border rounded-lg p-3"
-                placeholder="Enter your email" /></label
-            ><label class="text-sm font-semibold"
-              >Phone Number *<input
-                required
-                class="mt-2 w-full border rounded-lg p-3"
-                placeholder="Enter your phone number" /></label
-            ><label class="text-sm font-semibold"
-              >Service Interested In<select
-                class="mt-2 w-full border rounded-lg p-3"
-              >
-                <option>Select a service</option>
+          <p class="text-xs font-extrabold uppercase tracking-[.18em] text-brand">Send us a message</p>
+          <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">Get in Touch</h2>
+          <p class="mt-3 max-w-xl leading-7 text-slate-600">Tell us a little about your goals and requirements. Our team can help you explore the next steps.</p>
+
+          <!-- IMPORTANT: Replace YOUR_FORM_ID with your real Formspree form ID before publishing.
+               HTML alone cannot deliver form submissions without a configured endpoint. -->
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="mt-8 grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="name" class="mb-2 block text-sm font-bold text-slate-700">Your Name <span class="text-red-600">*</span></label>
+              <input id="name" name="name" type="text" autocomplete="name" required minlength="2" placeholder="Enter your name" class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-brand focus:ring-4 focus:ring-blue-100">
+            </div>
+            <div>
+              <label for="email" class="mb-2 block text-sm font-bold text-slate-700">Your Email <span class="text-red-600">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" required
+                 pattern="[A-Za-z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}"
+                 title="Enter a valid email address, such as name@example.com."
+                 placeholder="Enter your email"
+                 class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-brand focus:ring-4 focus:ring-blue-100">
+            </div>
+            <div>
+              <label for="phone" class="mb-2 block text-sm font-bold text-slate-700">Phone Number <span class="text-red-600">*</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required
+                 inputmode="numeric" maxlength="10" pattern="[6-9][0-9]{9}"
+                 title="Enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9. Do not include +91 or spaces."
+                 placeholder="Enter 10-digit mobile number"
+                 class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-brand focus:ring-4 focus:ring-blue-100">
+            </div>
+            <div>
+              <label for="service" class="mb-2 block text-sm font-bold text-slate-700">Service Interested In</label>
+              <select id="service" name="service" class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-brand focus:ring-4 focus:ring-blue-100">
+                <option value="">Select a service</option>
                 <option>Web Development</option>
                 <option>Digital Marketing</option>
                 <option>Automation</option>
-                <option>Custom Software</option>
-              </select></label
-            ><label class="text-sm font-semibold md:col-span-2"
-              >Your Message<textarea
-                required
-                rows="5"
-                class="mt-2 w-full border rounded-lg p-3"
-                placeholder="Tell us about your requirement..."
-              ></textarea></label
-            ><button class="btn btn-primary md:col-span-2 justify-center">
-              Send Message →
-            </button>
-            <div
-              id="formMsg"
-              class="hidden md:col-span-2 text-green-700 font-semibold"
-            >
-              Thanks! Your message has been received.
+                <option>Custom Software &amp; CRM</option>
+                <option>AI Calling &amp; AI Agents</option>
+                <option>Other</option>
+              </select>
             </div>
+            <div class="sm:col-span-2">
+              <label for="message" class="mb-2 block text-sm font-bold text-slate-700">Your Message <span class="text-red-600">*</span></label>
+              <textarea id="message" name="message" rows="5" required minlength="10" placeholder="Tell us about your requirements..." class="w-full resize-y rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-brand focus:ring-4 focus:ring-blue-100"></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="New Contact Enquiry — Aken Tech Solution">
+            <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-5 py-3.5 font-bold text-white shadow-md transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200 sm:col-span-2">Send Message <span aria-hidden="true">→</span></button>
+            <p class="text-xs leading-5 text-slate-500 sm:col-span-2">Your details will be used to respond to your enquiry. Configure the form endpoint before accepting real submissions.</p>
           </form>
         </div>
-        <div
-          class="rounded-xl min-h-[500px] bg-gradient-to-b from-blue-50 to-slate-50 border border-blue-100 p-8 flex flex-col items-center justify-center text-center shadow-sm"
-        >
-          <div class="w-16 h-16 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/30 mb-4">
-            <svg class="w-8 h-8 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-extrabold text-slate-900 mt-2">Aken Tech Solution</h3>
-          <p class="text-slate-600 mt-1 max-w-sm">
-            Thane, Mumbai, Maharashtra, India. Serving forward-thinking clients worldwide.
-          </p>
-          <a
-            href="https://maps.google.com/?q=Thane,Maharashtra"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-primary text-xs mt-4 inline-flex items-center gap-2"
-          >
-            <svg class="w-4 h-4 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-            <span>Open in Google Maps →</span>
-          </a>
 
-          <!-- Social Links on Contact Page -->
-          <div class="mt-8 pt-6 border-t border-slate-200/80 w-full max-w-sm">
-            <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
-              Connect With Us On Social Media
-            </p>
-            <div class="flex items-center justify-center gap-3">
-              <a
-                href="https://www.linkedin.com/company/akentechsolution"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 rounded-xl bg-white shadow-sm border border-slate-200 text-slate-700 hover:bg-blue-600 hover:text-white hover:border-blue-600 flex items-center justify-center transition-all duration-200"
-                title="LinkedIn"
-                aria-label="LinkedIn"
-              >
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-              </a>
-              <a
-                href="https://www.instagram.com/akentechsolution"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 rounded-xl bg-white shadow-sm border border-slate-200 text-slate-700 hover:bg-pink-600 hover:text-white hover:border-pink-600 flex items-center justify-center transition-all duration-200"
-                title="Instagram"
-                aria-label="Instagram"
-              >
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              </a>
-              <a
-                href="https://wa.me/919876543210?text=Hi%20Aken%20Tech%20Solution,%20I%20would%20like%20to%20connect%20with%20your%20team"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 rounded-xl bg-white shadow-sm border border-slate-200 text-slate-700 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 flex items-center justify-center transition-all duration-200"
-                title="WhatsApp"
-                aria-label="WhatsApp"
-              >
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.11 7.44C8.95 7.44 8.68 7.5 8.46 7.74C8.23 7.97 7.61 8.56 7.61 9.77C7.61 10.97 8.5 12.13 8.62 12.29C8.75 12.45 10.34 14.91 12.78 15.96C13.36 16.21 13.81 16.36 14.16 16.47C14.74 16.66 15.26 16.63 15.68 16.57C16.15 16.5 17.12 15.98 17.32 15.42C17.53 14.85 17.53 14.37 17.47 14.27C17.41 14.17 17.25 14.11 17.01 13.99C16.78 13.88 15.61 13.3 15.4 13.22C15.18 13.14 15.02 13.1 14.86 13.34C14.71 13.58 14.27 14.11 14.13 14.27C14 14.43 13.86 14.45 13.63 14.33C13.4 14.21 12.63 13.96 11.72 13.15C11.01 12.52 10.53 11.74 10.39 11.51C10.26 11.27 10.37 11.14 10.49 11.03C10.6 10.92 10.73 10.75 10.85 10.61C10.97 10.47 11.01 10.37 11.09 10.21C11.17 10.05 11.13 9.91 11.07 9.79C11.01 9.67 10.57 8.58 10.39 8.13C10.21 7.7 10.03 7.76 9.89 7.75C9.76 7.75 9.6 7.74 9.44 7.74C9.28 7.74 9.11 7.44 9.11 7.44Z"/></svg>
-              </a>
-              <a
-                href="https://www.youtube.com/@akentechsolution"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 rounded-xl bg-white shadow-sm border border-slate-200 text-slate-700 hover:bg-red-600 hover:text-white hover:border-red-600 flex items-center justify-center transition-all duration-200"
-                title="YouTube"
-                aria-label="YouTube"
-              >
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-              </a>
-              <a
-                href="https://www.facebook.com/akentechsolution"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 rounded-xl bg-white shadow-sm border border-slate-200 text-slate-700 hover:bg-blue-700 hover:text-white hover:border-blue-700 flex items-center justify-center transition-all duration-200"
-                title="Facebook"
-                aria-label="Facebook"
-              >
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-              </a>
+        <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft">
+          <div class="flex flex-wrap items-center justify-between gap-3 p-5 sm:p-6">
+            <div>
+              <h3 class="font-extrabold text-navy">Aken Tech Solution</h3>
+              <p class="mt-1 text-sm text-slate-600">Thane, Maharashtra, India</p>
             </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Thane%2C+Maharashtra%2C+India" target="_blank" rel="noopener noreferrer" class="rounded-lg bg-blue-50 px-3 py-2 text-sm font-bold text-brand hover:bg-blue-100">Open in Maps ↗</a>
+          </div>
+          <iframe
+            title="Google Map showing Thane, Maharashtra, India"
+            src="https://www.google.com/maps?q=Thane%2C%20Maharashtra%2C%20India&output=embed"
+            width="100%"
+            height="390"
+            style="border:0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
+          <div class="border-t border-slate-100 bg-slate-50 px-5 py-4 text-sm text-slate-600">
+            Please confirm the exact office address before publishing this map as your business location.
           </div>
         </div>
       </div>
     </section>
-    <section class="section bg-slate-50">
-      <div class="container-x">
-        <div class="eyebrow">WHY CONTACT US?</div>
-        <h2 class="section-title mt-2">We're Here to Help You Grow</h2>
-        <div class="grid md:grid-cols-4 gap-5 mt-8">
-          <div class="card p-6 text-center">
-            <div class="icon-circle mx-auto bg-blue-50 text-blue-600 flex items-center justify-center">
-              <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <h3 class="font-extrabold mt-4">Free Consultation</h3>
+
+    <!-- Why contact us -->
+    <section class="bg-slate-50 py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p class="text-xs font-extrabold uppercase tracking-[.18em] text-brand">Why contact us?</p>
+        <div class="mt-2 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 class="text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">We’re Here to Help You Grow</h2>
+            <p class="mt-3 max-w-2xl leading-7 text-slate-600">Whether you need a website, custom software, automation or digital marketing, start with a conversation about your goals.</p>
           </div>
-          <div class="card p-6 text-center">
-            <div class="icon-circle mx-auto bg-blue-50 text-blue-600 flex items-center justify-center">
-              <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <h3 class="font-extrabold mt-4">Tailored Solutions</h3>
-          </div>
-          <div class="card p-6 text-center">
-            <div class="icon-circle mx-auto bg-blue-50 text-blue-600 flex items-center justify-center">
-              <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <h3 class="font-extrabold mt-4">Expert Team</h3>
-          </div>
-          <div class="card p-6 text-center">
-            <div class="icon-circle mx-auto bg-blue-50 text-blue-600 flex items-center justify-center">
-              <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <h3 class="font-extrabold mt-4">Long-Term Partnership</h3>
-          </div>
+        </div>
+        <div class="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-blue-50 text-2xl text-brand" aria-hidden="true">▣</span>
+            <h3 class="mt-4 font-extrabold text-navy">Free Consultation</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Discuss your goals and understand possible next steps before deciding.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-blue-50 text-2xl text-brand" aria-hidden="true">⚙</span>
+            <h3 class="mt-4 font-extrabold text-navy">Tailored Solutions</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Explore solutions shaped around your requirements and business workflow.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-blue-50 text-2xl text-brand" aria-hidden="true">♧</span>
+            <h3 class="mt-4 font-extrabold text-navy">Expert Team</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Connect with a team to discuss technology and marketing requirements.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-blue-50 text-2xl text-brand" aria-hidden="true">↗</span>
+            <h3 class="mt-4 font-extrabold text-navy">Long-Term Partnership</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Plan for ongoing improvements and support that fit your needs.</p>
+          </article>
         </div>
       </div>
     </section>
-    <section class="section">
-      <div class="container-x grid lg:grid-cols-2 gap-8">
+
+    <!-- FAQs -->
+    <section class="py-16 sm:py-20">
+      <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8">
         <div>
-          <div class="eyebrow">FREQUENTLY ASKED QUESTIONS</div>
-          <h2 class="section-title mt-2">Your Questions, Answered</h2>
+          <p class="text-xs font-extrabold uppercase tracking-[.18em] text-brand">Frequently asked questions</p>
+          <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">Your Questions, Answered</h2>
           <div class="mt-7 space-y-3">
-            <div class="faq card p-5 cursor-pointer">
-              <div class="flex justify-between font-bold">
-                <span>Do you offer free consultation?</span
-                ><span class="faq-icon">+</span>
-              </div>
-              <div class="faq-answer text-sm text-slate-600 pt-3">
-                Yes, we offer a free initial consultation to understand your
-                requirements and suggest the best solution for your business.
-              </div>
-            </div>
-            <div class="faq card p-5 cursor-pointer">
-              <div class="flex justify-between font-bold">
-                <span>How long does a project take?</span
-                ><span class="faq-icon">+</span>
-              </div>
-              <div class="faq-answer text-sm text-slate-600 pt-3">
-                Project timelines depend on the scope, requirements and delivery
-                plan.
-              </div>
-            </div>
-            <div class="faq card p-5 cursor-pointer">
-              <div class="flex justify-between font-bold">
-                <span>Do you provide ongoing support?</span
-                ><span class="faq-icon">+</span>
-              </div>
-              <div class="faq-answer text-sm text-slate-600 pt-3">
-                Yes, support can continue after launch based on the selected
-                solution.
-              </div>
-            </div>
-            <div class="faq card p-5 cursor-pointer">
-              <div class="flex justify-between font-bold">
-                <span>Can you work with international clients?</span
-                ><span class="faq-icon">+</span>
-              </div>
-              <div class="faq-answer text-sm text-slate-600 pt-3">
-                Yes, the company serves clients worldwide.
-              </div>
-            </div>
+            <details open class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+              <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-navy focus:outline-none">
+                <span>Do you offer free consultation?</span>
+                <span class="faq-plus text-xl font-normal text-brand transition-transform" aria-hidden="true">+</span>
+              </summary>
+              <p class="pt-3 text-sm leading-6 text-slate-600">You can contact our team to discuss your requirements and explore suitable solutions for your business.</p>
+            </details>
+            <details class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+              <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-navy focus:outline-none">
+                <span>How long does a project take?</span>
+                <span class="faq-plus text-xl font-normal text-brand transition-transform" aria-hidden="true">+</span>
+              </summary>
+              <p class="pt-3 text-sm leading-6 text-slate-600">Timelines depend on the project scope, requirements, feedback cycles and delivery plan. We can discuss an estimate after understanding your needs.</p>
+            </details>
+            <details class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+              <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-navy focus:outline-none">
+                <span>Do you provide ongoing support?</span>
+                <span class="faq-plus text-xl font-normal text-brand transition-transform" aria-hidden="true">+</span>
+              </summary>
+              <p class="pt-3 text-sm leading-6 text-slate-600">Support and maintenance options can be discussed according to the solution, scope and service arrangement.</p>
+            </details>
+            <details class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+              <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-navy focus:outline-none">
+                <span>Can you work with international clients?</span>
+                <span class="faq-plus text-xl font-normal text-brand transition-transform" aria-hidden="true">+</span>
+              </summary>
+              <p class="pt-3 text-sm leading-6 text-slate-600">Contact us with your location, project details and preferred communication times to discuss your requirements.</p>
+            </details>
           </div>
         </div>
-        <div class="card bg-blue-50 p-10 flex flex-col justify-center">
-          <div class="icon-circle">◉</div>
-          <h3 class="text-2xl font-extrabold mt-5">Still Have Questions?</h3>
-          <p class="text-slate-600 mt-2">
-            Our team is just a call or message away. Let's discuss your
-            requirements.
-          </p>
-          <a href="contact.html" class="btn btn-primary mt-6 w-fit"
-            >Talk to an Expert →</a
-          >
-        </div>
+
+        <aside class="flex flex-col items-start justify-center rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-sky-50 p-8 sm:p-10">
+          <span class="grid h-16 w-16 place-items-center rounded-2xl bg-white text-3xl text-brand shadow-sm" aria-hidden="true">☏</span>
+          <h3 class="mt-6 text-2xl font-extrabold text-navy">Still Have Questions?</h3>
+          <p class="mt-3 max-w-md leading-7 text-slate-600">Our team is ready to hear about your requirements. Choose the contact method that works for you.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#contact-form" class="rounded-lg bg-brand px-5 py-3 font-bold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200">Talk to an Expert →</a>
+            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="rounded-lg border border-slate-300 bg-white px-5 py-3 font-bold text-navy transition hover:border-emerald-400 hover:text-emerald-700">WhatsApp Us</a>
+          </div>
+        </aside>
       </div>
     </section>
-    <footer>
-      <section class="dark-section py-10">
-        <div
-          class="container-x flex flex-col lg:flex-row items-start lg:items-center justify-between gap-7"
-        >
-          <div>
-            <div class="eyebrow text-sky-300">READY TO GROW?</div>
-            <h2 class="text-2xl md:text-3xl font-extrabold mt-1">
-              Turn Your Goals Into Real Results
-            </h2>
-            <p class="text-slate-300 mt-2">
-              Get a free consultation and discover how Aken Tech Solution can
-              help you grow faster.
-            </p>
-          </div>
-          <a href="contact.html" class="btn btn-light">Get Free Consultation</a>
+
+    <!-- Final CTA -->
+    <section class="cta-bg">
+      <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-7 px-4 py-14 sm:px-6 md:flex-row md:items-center lg:px-8 lg:py-16">
+        <div class="max-w-2xl text-white">
+          <p class="text-xs font-extrabold uppercase tracking-[.18em] text-sky-300">Ready to grow?</p>
+          <h2 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Ready to Start Your Project?</h2>
+          <p class="mt-3 leading-7 text-slate-200">Let’s turn your ideas into practical solutions. Get in touch with Aken Tech Solution today.</p>
         </div>
-      </section>
-      <div class="bg-white">
-        <div class="container-x py-12 grid md:grid-cols-4 gap-10">
-          <div>
-            <div class="flex items-center gap-2 mb-4">
-              <span class="logo-mark">AT</span
-              ><span class="logo-name text-sm">Aken Tech Solution</span>
-            </div>
-            <p class="text-sm text-slate-600">
-              Aken Tech Solution helps businesses & organizations grow with
-              technology, automation and performance marketing.
-            </p>
-            <div class="flex gap-3 mt-5 text-lg">
-              <span>in</span><span>◎</span><span>▶</span><span>f</span>
-            </div>
-          </div>
-          <div>
-            <h3 class="font-extrabold mb-3">Quick Links</h3>
-            <div class="space-y-2 text-sm text-slate-600">
-              <a class="block" href="index.html">Home</a
-              ><a class="block" href="about.html">About Us</a
-              ><a class="block" href="services.html">Services</a
-              ><a class="block" href="products.html">Products</a
-              ><a class="block" href="industries.html">Industries</a
-              ><a class="block" href="portfolio.html">Portfolio</a
-              ><a class="block" href="blog.html">Blog</a
-              ><a class="block" href="contact.html">Contact</a>
-            </div>
-          </div>
-          <div>
-            <h3 class="font-extrabold mb-3">Our Services</h3>
-            <div class="space-y-2 text-sm text-slate-600">
-              <div>Performance Marketing</div>
-              <div>Real Estate Solutions</div>
-              <div>Web Development</div>
-              <div>Custom Software & CRM</div>
-              <div>WhatsApp Automation</div>
-              <div>AI Calling & AI Agents</div>
-              <div>NGO Digital Solutions</div>
-            </div>
-          </div>
-          <div>
-            <h3 class="font-extrabold mb-3">Contact Us</h3>
-            <div class="space-y-3 text-sm text-slate-600">
-              <div>☎ +91 98765 43210</div>
-              <div>✉ hello@akentech.in</div>
-              <div>⌖ Thane, Mumbai, India</div>
-              <div>◉ Serving Clients Worldwide</div>
-            </div>
-          </div>
+        <a href="#contact-form" class="shrink-0 rounded-lg bg-brand px-6 py-3.5 font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Contact Us Now →</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-navy text-white">
+    <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div>
+        <a href="index.html" class="inline-flex items-center gap-3" aria-label="Aken Tech Solution home">
+          <span class="text-3xl font-black italic tracking-tighter text-sky-300">AT</span>
+          <span class="font-extrabold leading-tight">Aken Tech Solution<span class="mt-1 block text-[10px] font-semibold uppercase tracking-[.18em] text-sky-300">Innovate · Develop · Deliver</span></span>
+        </a>
+        <p class="mt-4 text-sm leading-6 text-slate-300">Helping businesses explore technology, automation and performance marketing solutions.</p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <a aria-label="LinkedIn" href="https://www.linkedin.com/company/akentechsolution" target="_blank" rel="noopener noreferrer" class="grid h-10 w-10 place-items-center rounded-lg border border-white/15 bg-white/5 font-bold transition hover:bg-brand">in</a>
+          <a aria-label="Instagram" href="https://www.instagram.com/akentechsolution" target="_blank" rel="noopener noreferrer" class="grid h-10 w-10 place-items-center rounded-lg border border-white/15 bg-white/5 transition hover:bg-pink-600">◎</a>
+          <a aria-label="YouTube" href="https://www.youtube.com/@akentechsolution" target="_blank" rel="noopener noreferrer" class="grid h-10 w-10 place-items-center rounded-lg border border-white/15 bg-white/5 transition hover:bg-red-600">▶</a>
+          <a aria-label="Facebook" href="https://www.facebook.com/akentechsolution" target="_blank" rel="noopener noreferrer" class="grid h-10 w-10 place-items-center rounded-lg border border-white/15 bg-white/5 font-bold transition hover:bg-blue-700">f</a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <div
-          class="container-x py-4 flex flex-col sm:flex-row justify-between gap-2 text-xs"
-        >
-          <span>© 2025 Aken Tech Solution. All rights reserved.</span>
-          <div class="flex gap-6">
-            <span>Privacy Policy</span><span>Terms & Conditions</span
-            ><span>Sitemap</span>
-          </div>
+
+      <div>
+        <h2 class="font-extrabold">Quick Links</h2>
+        <ul class="mt-4 space-y-2 text-sm text-slate-300">
+          <li><a class="hover:text-sky-300" href="index.html">Home</a></li>
+          <li><a class="hover:text-sky-300" href="about.html">About Us</a></li>
+          <li><a class="hover:text-sky-300" href="services.html">Services</a></li>
+          <li><a class="hover:text-sky-300" href="products.html">Products</a></li>
+          <li><a class="hover:text-sky-300" href="industries.html">Industries</a></li>
+          <li><a class="hover:text-sky-300" href="portfolio.html">Portfolio</a></li>
+          <li><a class="hover:text-sky-300" href="blog.html">Blog</a></li>
+          <li><a class="text-sky-300" href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-extrabold">Our Services</h2>
+        <ul class="mt-4 space-y-2 text-sm text-slate-300">
+          <li>Performance Marketing</li>
+          <li>Real Estate Solutions</li>
+          <li>Web Development</li>
+          <li>Custom Software &amp; CRM</li>
+          <li>WhatsApp Automation</li>
+          <li>AI Calling &amp; AI Agents</li>
+          <li>NGO Digital Solutions</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-extrabold">Contact Us</h2>
+        <ul class="mt-4 space-y-4 text-sm text-slate-300">
+          <li class="flex gap-3"><span aria-hidden="true">☎</span><a class="hover:text-sky-300" href="tel:+919876543210">+91 98765 43210</a></li>
+          <li class="flex gap-3"><span aria-hidden="true">✉</span><a class="break-all hover:text-sky-300" href="mailto:hello@akentech.in">hello@akentech.in</a></li>
+          <li class="flex gap-3"><span aria-hidden="true">⌖</span><a class="hover:text-sky-300" href="https://www.google.com/maps/search/?api=1&query=Thane%2C+Maharashtra%2C+India" target="_blank" rel="noopener noreferrer">Thane, Maharashtra, India</a></li>
+          <li class="flex gap-3"><span aria-hidden="true">◎</span><span>Serving clients worldwide</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 bg-[#04162D]">
+      <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4 text-xs text-slate-300 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+        <p>© 2026 Aken Tech Solution. All rights reserved.</p>
+        <div class="flex flex-wrap gap-x-5 gap-y-2">
+          <a class="hover:text-white" href="privacy-policy.html">Privacy Policy</a>
+          <a class="hover:text-white" href="terms.html">Terms &amp; Conditions</a>
+          <a class="hover:text-white" href="sitemap.html">Sitemap</a>
         </div>
       </div>
-    </footer>
-    <script>
-      function updateScrollProgress() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        const bar = document.getElementById("scrollProgressBar");
-        if (bar) {
-          bar.style.width = Math.min(Math.max(progress, 0), 100) + "%";
-        }
-      }
-      window.addEventListener("scroll", updateScrollProgress, { passive: true });
-      window.addEventListener("resize", updateScrollProgress);
-      document.addEventListener("DOMContentLoaded", updateScrollProgress);
-
-      function initScrollAnimations() {
-        if (!("IntersectionObserver" in window)) return;
-        const targets = document.querySelectorAll("section:not(.hero), .card");
-        targets.forEach((el) => el.classList.add("reveal"));
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("active");
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          {
-            threshold: 0.08,
-            rootMargin: "0px 0px -30px 0px",
-          }
-        );
-
-        targets.forEach((el) => observer.observe(el));
-      }
-      document.addEventListener("DOMContentLoaded", initScrollAnimations);
-
-      function updateMenuPos() {
-        const hdr = document.querySelector("header");
-        const m = document.getElementById("mobileMenu");
-        if (hdr && m) {
-          const bottom = hdr.getBoundingClientRect().bottom;
-          const topVal = Math.max(50, Math.round(bottom) + 6);
-          m.style.setProperty("top", `${topVal}px`, "important");
-        }
-      }
-
-      function openMenu() {
-        const m = document.getElementById("mobileMenu");
-        const b = document.getElementById("mobileMenuBackdrop");
-        const btn = document.getElementById("mobileToggleBtn") || document.querySelector(".mobile-toggle");
-        if (m) {
-          updateMenuPos();
-          m.classList.add("open");
-          m.setAttribute("aria-hidden", "false");
-        }
-        if (b) {
-          b.classList.add("open");
-        }
-        if (btn) {
-          btn.classList.add("active");
-          btn.setAttribute("aria-expanded", "true");
-          btn.setAttribute("aria-label", "Close navigation menu");
-          const icon = btn.querySelector(".mobile-toggle-icon");
-          if (icon) {
-            icon.textContent = "✕";
-          }
-        }
-        document.body.classList.add("menu-open");
-      }
-
-      function closeMenu(e) {
-        if (e && typeof e.stopPropagation === "function") {
-          e.stopPropagation();
-        }
-        const m = document.getElementById("mobileMenu");
-        const b = document.getElementById("mobileMenuBackdrop");
-        const btn = document.getElementById("mobileToggleBtn") || document.querySelector(".mobile-toggle");
-        if (m) {
-          m.classList.remove("open");
-          m.setAttribute("aria-hidden", "true");
-        }
-        if (b) {
-          b.classList.remove("open");
-        }
-        if (btn) {
-          btn.classList.remove("active");
-          btn.setAttribute("aria-expanded", "false");
-          btn.setAttribute("aria-label", "Open navigation menu");
-          const icon = btn.querySelector(".mobile-toggle-icon");
-          if (icon) {
-            icon.textContent = "☰";
-          }
-        }
-        document.body.classList.remove("menu-open");
-      }
-
-      function toggleMenu(e) {
-        if (e) {
-          if (typeof e.preventDefault === "function") e.preventDefault();
-          if (typeof e.stopPropagation === "function") e.stopPropagation();
-        }
-        const m = document.getElementById("mobileMenu");
-        if (!m) return;
-        if (m.classList.contains("open")) {
-          closeMenu(e);
-        } else {
-          openMenu();
-        }
-      }
-
-      function initMobileDrawer() {
-        const mobileMenu = document.getElementById("mobileMenu");
-        const toggleBtn = document.getElementById("mobileToggleBtn") || document.querySelector(".mobile-toggle");
-        if (!mobileMenu) return;
-
-        mobileMenu.setAttribute("aria-hidden", "true");
-        mobileMenu.setAttribute("role", "dialog");
-        mobileMenu.setAttribute("aria-label", "Mobile Navigation Menu");
-
-        if (toggleBtn) {
-          toggleBtn.setAttribute("aria-expanded", "false");
-          toggleBtn.setAttribute("aria-controls", "mobileMenu");
-          toggleBtn.setAttribute("aria-label", "Open navigation menu");
-        }
-
-        mobileMenu.querySelectorAll("a").forEach((a) => {
-          a.addEventListener("click", () => closeMenu());
-        });
-
-        window.addEventListener("scroll", updateMenuPos, { passive: true });
-        window.addEventListener("resize", () => {
-          if (window.innerWidth >= 768) {
-            closeMenu();
-          } else {
-            updateMenuPos();
-          }
-        });
-        updateMenuPos();
-      }
-
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initMobileDrawer);
-      } else {
-        initMobileDrawer();
-      }
-
-      document.addEventListener("click", (e) => {
-        if (e.target.closest("#mobileToggleBtn, .mobile-toggle")) {
-          return;
-        }
-        const m = document.getElementById("mobileMenu");
-        if (m && m.classList.contains("open") && !m.contains(e.target)) {
-          closeMenu();
-        }
-        const faq = e.target.closest(".faq");
-        if (faq) {
-          faq.classList.toggle("open");
-          const i = faq.querySelector(".faq-icon");
-          if (i) i.textContent = faq.classList.contains("open") ? "−" : "+";
-        }
-        const tab = e.target.closest("[data-filter]");
-        if (tab) {
-          const g = tab.dataset.filterGroup;
-          document
-            .querySelectorAll(`[data-filter-tab="${g}"]`)
-            .forEach((x) => x.classList.remove("active"));
-          tab.classList.add("active");
-          const v = tab.dataset.filter;
-          document
-            .querySelectorAll(`[data-filter-item="${g}"]`)
-            .forEach((x) =>
-              x.classList.toggle(
-                "hidden",
-                v !== "all" && x.dataset.category !== v,
-              ),
-            );
-        }
+    </div>
+  </footer>
+  <script>
+    // Keep the Indian mobile field to at most 10 digits.
+    const phoneInput = document.getElementById("phone");
+    if (phoneInput) {
+      phoneInput.addEventListener("input", () => {
+        phoneInput.value = phoneInput.value.replace(/\\D/g, "").slice(0, 10);
       });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          const m = document.getElementById("mobileMenu");
-          if (m && m.classList.contains("open")) {
-            closeMenu();
-            const btn = document.getElementById("mobileToggleBtn") || document.querySelector(".mobile-toggle");
-            if (btn) btn.focus();
-          }
-        }
-      });
-      document.addEventListener("DOMContentLoaded", () => {
-        const s = document.querySelector("#blogSearch");
-        if (s)
-          s.addEventListener("input", () => {
-            let q = s.value.toLowerCase();
-            document
-              .querySelectorAll("[data-blog]")
-              .forEach((x) =>
-                x.classList.toggle(
-                  "hidden",
-                  q && !x.innerText.toLowerCase().includes(q),
-                ),
-              );
-          });
-        const f = document.querySelector("#contactForm");
-        if (f)
-          f.addEventListener("submit", (e) => {
-            e.preventDefault();
-            document.querySelector("#formMsg").classList.remove("hidden");
-          });
-      });
-    </script>
-  </body>
+    }
+  </script>
+</body>
 </html>
